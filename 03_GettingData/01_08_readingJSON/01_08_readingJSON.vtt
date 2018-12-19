@@ -1,0 +1,432 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:02.500
+This lecture's gonna
+be about reading JSON.
+
+2
+00:00:02.500 --> 00:00:04.220
+JSON's another file format.
+
+3
+00:00:04.220 --> 00:00:08.360
+It's a little bit similar to XML in
+the sense that it's structured, and
+
+4
+00:00:08.360 --> 00:00:10.690
+it's also very commonly
+used on the internet.
+
+5
+00:00:10.690 --> 00:00:13.880
+So JSON is short for
+Javascript Object Navigation.
+
+6
+00:00:13.880 --> 00:00:15.910
+It's lightweight for data storage.
+
+7
+00:00:15.910 --> 00:00:18.850
+So it's very common in application
+programming interfaces
+
+8
+00:00:18.850 --> 00:00:24.010
+which are ways that you can
+programmatically detect access to data for
+
+9
+00:00:24.010 --> 00:00:26.660
+companies like Twitter or
+Facebook through URLs.
+
+10
+00:00:27.850 --> 00:00:32.540
+Similar structure to XML in the sense
+that it's a structured language, but
+
+11
+00:00:32.540 --> 00:00:34.350
+it's a very different syntax and format.
+
+12
+00:00:35.495 --> 00:00:40.505
+The data are stored as Numbers,
+Strings, Booleans, Arrays, or Objects.
+
+13
+00:00:40.505 --> 00:00:43.605
+So if you want to know a little bit more
+about JSON the best place to start again,
+
+14
+00:00:43.605 --> 00:00:45.215
+as usual, is actually Wikipedia.
+
+15
+00:00:45.215 --> 00:00:49.136
+This link will take you to a lot
+more information about JSON.
+
+16
+00:00:49.136 --> 00:00:51.235
+So this is an example JSON file.
+
+17
+00:00:51.235 --> 00:00:54.525
+It actually comes from,
+this is the API for github.
+
+18
+00:00:54.525 --> 00:00:59.440
+And this is actually the data about
+the repos that I am contributing to.
+
+19
+00:00:59.440 --> 00:01:03.460
+And so, what you can do is go here and
+look at this file.
+
+20
+00:01:03.460 --> 00:01:07.010
+And so,
+there's a overall curly bracket that
+
+21
+00:01:07.010 --> 00:01:10.350
+represents the sort of entire JSON object.
+
+22
+00:01:10.350 --> 00:01:15.190
+And then, each of the different repos is
+inside of its own separate curly bracket.
+
+23
+00:01:15.190 --> 00:01:18.740
+And so each repo has a bunch of
+variables associated with it, so for
+
+24
+00:01:18.740 --> 00:01:23.900
+example the ID variable or
+the full name of the repo and all that.
+
+25
+00:01:23.900 --> 00:01:27.308
+And so what you see is
+the structure of a JSON file and
+
+26
+00:01:27.308 --> 00:01:32.082
+sort of the ID followed by a colon
+followed by the value of the variable.
+
+27
+00:01:32.082 --> 00:01:37.206
+And so you can have nested
+sort of structures within, so
+
+28
+00:01:37.206 --> 00:01:42.680
+for example an array can be
+a component of the JSON objects.
+
+29
+00:01:42.680 --> 00:01:48.570
+So, for example, the owner variable
+here actually has an array as the value,
+
+30
+00:01:48.570 --> 00:01:51.520
+so you could see there's the colon, and
+then there's another open curly bracket.
+
+31
+00:01:51.520 --> 00:01:55.301
+And then there's a whole bunch
+of variables, like my login, and
+
+32
+00:01:55.301 --> 00:01:58.625
+the avatar URL, and
+all of that different information.
+
+33
+00:01:58.625 --> 00:02:01.130
+So there is actually a very nice
+package for reading this data in.
+
+34
+00:02:01.130 --> 00:02:02.700
+It's called the jsonlite package.
+
+35
+00:02:02.700 --> 00:02:06.715
+So what you do is you actually take
+the URL where the JSON appears, so
+
+36
+00:02:06.715 --> 00:02:10.321
+here's that URL, and
+you pass it to the fromJSON function.
+
+37
+00:02:10.321 --> 00:02:14.013
+And what you get out is
+a structured data frame.
+
+38
+00:02:14.013 --> 00:02:17.666
+So if you look at the names of that data
+frame, it's gonna be all the top level
+
+39
+00:02:17.666 --> 00:02:21.054
+variables, things like ID, and
+name, and full_name and so forth.
+
+40
+00:02:21.054 --> 00:02:23.496
+So one of those variables
+as you can see is owner.
+
+41
+00:02:23.496 --> 00:02:25.864
+So that's one of the components
+of this data frame.
+
+42
+00:02:25.864 --> 00:02:31.714
+So if we drill down a little bit and look
+at the names of that particular variable,
+
+43
+00:02:31.714 --> 00:02:34.505
+you see names(jsonData$owner).
+
+44
+00:02:34.505 --> 00:02:38.285
+So usually this would access
+one column of the data frame.
+
+45
+00:02:38.285 --> 00:02:41.915
+And so it turns out you can actually,
+because of the flexibility of data frames
+
+46
+00:02:41.915 --> 00:02:44.008
+in R store the data frame
+within a data frame.
+
+47
+00:02:44.008 --> 00:02:46.647
+So within that column of the data set,
+
+48
+00:02:46.647 --> 00:02:51.440
+the owner column, there's actually
+a bunch of other information.
+
+49
+00:02:51.440 --> 00:02:54.902
+Cuz you remember owner corresponding
+to an array of values.
+
+50
+00:02:54.902 --> 00:03:00.275
+So you get again, the login, the id,
+say, the avatar_url and so forth.
+
+51
+00:03:00.275 --> 00:03:03.215
+So we can drill down even further and
+so we can access, say, for
+
+52
+00:03:03.215 --> 00:03:06.453
+example the log n of all the different
+repos on this particular page.
+
+53
+00:03:06.453 --> 00:03:10.611
+And since we're only looking at the API
+for my repos, you can see that the login
+
+54
+00:03:10.611 --> 00:03:14.260
+is the same for all of them,
+it's jtleek in every single case.
+
+55
+00:03:14.260 --> 00:03:16.310
+And so you can see there's one time for
+
+56
+00:03:16.310 --> 00:03:19.220
+every single repo that
+exists in that data set.
+
+57
+00:03:20.900 --> 00:03:23.208
+And so
+another thing that you can do is actually,
+
+58
+00:03:23.208 --> 00:03:25.473
+you can take data sets
+that are data frames in R.
+
+59
+00:03:25.473 --> 00:03:29.080
+So one example of the very classic
+data set, the Iris data set.
+
+60
+00:03:29.080 --> 00:03:33.364
+You can turn it into a JSON
+dataset by saying, toJSON.
+
+61
+00:03:33.364 --> 00:03:36.787
+So this is nice if you're going to
+be exporting data that's gonna be
+
+62
+00:03:36.787 --> 00:03:39.980
+used by an API that requires
+JSON formatted data.
+
+63
+00:03:39.980 --> 00:03:43.640
+So here I've set pretty=TRUE, and
+that would give you nice indentations so
+
+64
+00:03:43.640 --> 00:03:46.020
+it's easy to read the file
+when you look at it.
+
+65
+00:03:46.020 --> 00:03:50.060
+So if you look at this variable,
+this variable is not a text variable, and
+
+66
+00:03:50.060 --> 00:03:53.210
+so what we can do is we can use
+the cat command to print it out and
+
+67
+00:03:53.210 --> 00:03:55.630
+you could see that it's
+nicely structured like that.
+
+68
+00:03:57.280 --> 00:04:00.290
+So you can actually take that
+JSON file we just created.
+
+69
+00:04:00.290 --> 00:04:05.170
+So we took the iris dataset, we turned it
+into a JSON file with the toJSON command.
+
+70
+00:04:05.170 --> 00:04:07.330
+We can then take that text and
+
+71
+00:04:07.330 --> 00:04:11.560
+send it right back to a data
+frame using the fromJSON command.
+
+72
+00:04:11.560 --> 00:04:13.247
+So the interesting thing here is,
+
+73
+00:04:13.247 --> 00:04:16.164
+in the first example that we
+used it was actually a URL here.
+
+74
+00:04:16.164 --> 00:04:18.955
+We actually passed it a URL for
+the JSON file.
+
+75
+00:04:18.955 --> 00:04:23.520
+And here we're just passing it a variable
+name which corresponds to a text variable
+
+76
+00:04:23.520 --> 00:04:26.120
+that can then be converted
+into a data frame.
+
+77
+00:04:26.120 --> 00:04:29.380
+So then if we look at the top of that
+data frame using the head command
+
+78
+00:04:29.380 --> 00:04:31.510
+you see that you get
+back the iris data sets.
+
+79
+00:04:31.510 --> 00:04:34.340
+So, if you just looked at
+the iris data set by itself,
+
+80
+00:04:34.340 --> 00:04:38.620
+it'll look exactly the same
+as using this file here.
+
+81
+00:04:38.620 --> 00:04:41.640
+So, if you want a little bit more
+information you can go to json.org.
+
+82
+00:04:41.640 --> 00:04:44.650
+This'll give you more
+information on JSON in general.
+
+83
+00:04:44.650 --> 00:04:47.550
+And then a really nice tutorial on
+jsonlite that was the basis for
+
+84
+00:04:47.550 --> 00:04:50.320
+a lot of this lecture is
+right here at r-bloggers.
+
+85
+00:04:50.320 --> 00:04:52.390
+So you can take that, take a look at that.
+
+86
+00:04:52.390 --> 00:04:55.600
+The jsonlite vignette is also quite good,
+it gives you a lot more information.
+
+87
+00:04:55.600 --> 00:04:59.360
+So if you have a more complicated JSON
+structure then you need to get access to,
+
+88
+00:04:59.360 --> 00:05:01.350
+you can go check out those resources and
+
+89
+00:05:01.350 --> 00:05:02.970
+they might give you a little
+bit more information.

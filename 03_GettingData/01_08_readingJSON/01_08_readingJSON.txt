@@ -1,0 +1,76 @@
+This lecture's gonna
+be about reading JSON. JSON's another file format. It's a little bit similar to XML in
+the sense that it's structured, and it's also very commonly
+used on the internet. So JSON is short for
+Javascript Object Navigation. It's lightweight for data storage. So it's very common in application
+programming interfaces which are ways that you can
+programmatically detect access to data for companies like Twitter or
+Facebook through URLs. Similar structure to XML in the sense
+that it's a structured language, but it's a very different syntax and format. The data are stored as Numbers,
+Strings, Booleans, Arrays, or Objects. So if you want to know a little bit more
+about JSON the best place to start again, as usual, is actually Wikipedia. This link will take you to a lot
+more information about JSON. So this is an example JSON file. It actually comes from,
+this is the API for github. And this is actually the data about
+the repos that I am contributing to. And so, what you can do is go here and
+look at this file. And so,
+there's a overall curly bracket that represents the sort of entire JSON object. And then, each of the different repos is
+inside of its own separate curly bracket. And so each repo has a bunch of
+variables associated with it, so for example the ID variable or
+the full name of the repo and all that. And so what you see is
+the structure of a JSON file and sort of the ID followed by a colon
+followed by the value of the variable. And so you can have nested
+sort of structures within, so for example an array can be
+a component of the JSON objects. So, for example, the owner variable
+here actually has an array as the value, so you could see there's the colon, and
+then there's another open curly bracket. And then there's a whole bunch
+of variables, like my login, and the avatar URL, and
+all of that different information. So there is actually a very nice
+package for reading this data in. It's called the jsonlite package. So what you do is you actually take
+the URL where the JSON appears, so here's that URL, and
+you pass it to the fromJSON function. And what you get out is
+a structured data frame. So if you look at the names of that data
+frame, it's gonna be all the top level variables, things like ID, and
+name, and full_name and so forth. So one of those variables
+as you can see is owner. So that's one of the components
+of this data frame. So if we drill down a little bit and look
+at the names of that particular variable, you see names(jsonData$owner). So usually this would access
+one column of the data frame. And so it turns out you can actually,
+because of the flexibility of data frames in R store the data frame
+within a data frame. So within that column of the data set, the owner column, there's actually
+a bunch of other information. Cuz you remember owner corresponding
+to an array of values. So you get again, the login, the id,
+say, the avatar_url and so forth. So we can drill down even further and
+so we can access, say, for example the log n of all the different
+repos on this particular page. And since we're only looking at the API
+for my repos, you can see that the login is the same for all of them,
+it's jtleek in every single case. And so you can see there's one time for every single repo that
+exists in that data set. And so
+another thing that you can do is actually, you can take data sets
+that are data frames in R. So one example of the very classic
+data set, the Iris data set. You can turn it into a JSON
+dataset by saying, toJSON. So this is nice if you're going to
+be exporting data that's gonna be used by an API that requires
+JSON formatted data. So here I've set pretty=TRUE, and
+that would give you nice indentations so it's easy to read the file
+when you look at it. So if you look at this variable,
+this variable is not a text variable, and so what we can do is we can use
+the cat command to print it out and you could see that it's
+nicely structured like that. So you can actually take that
+JSON file we just created. So we took the iris dataset, we turned it
+into a JSON file with the toJSON command. We can then take that text and send it right back to a data
+frame using the fromJSON command. So the interesting thing here is, in the first example that we
+used it was actually a URL here. We actually passed it a URL for
+the JSON file. And here we're just passing it a variable
+name which corresponds to a text variable that can then be converted
+into a data frame. So then if we look at the top of that
+data frame using the head command you see that you get
+back the iris data sets. So, if you just looked at
+the iris data set by itself, it'll look exactly the same
+as using this file here. So, if you want a little bit more
+information you can go to json.org. This'll give you more
+information on JSON in general. And then a really nice tutorial on
+jsonlite that was the basis for a lot of this lecture is
+right here at r-bloggers. So you can take that, take a look at that. The jsonlite vignette is also quite good,
+it gives you a lot more information. So if you have a more complicated JSON
+structure then you need to get access to, you can go check out those resources and they might give you a little
+bit more information.

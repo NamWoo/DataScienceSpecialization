@@ -1,0 +1,67 @@
+This next lecture is about reading
+local what are called flat files. Prime examples are text files,
+hyper delimited text files, comma delimited text files and so forth. If you've actually already taken the R
+programming class, you may be able to skip this lecture, because you've
+already seen how to load it into R. So again, we're gonna go back to
+the Baltimore fixed camera data. And so,
+I'm again going to download the data. I'm gonna check to see if
+the data directory exists. And if it doesn't, I'm gonna create it, then I'm going to download
+the data with download.file. So now the data has been
+downloaded from the website and is actually sitting on my computer,
+it's local data to my computer. So the first thing you might
+wanna use to load the data is with the read.table() function. And so read.table() is the most common
+function, because it's the most robust. It allows you the most
+flexibility in some ways in R. It does require a few more parameters
+than you would pass to some of the other functions and
+it can be a little bit slow. So there's actually faster ways if you
+need to scan through files to find specific elements and
+we might talk about those later. It reads the data into RAM, so
+it reads the data into memory. And so if you have a really, really big data setting caused
+problems unless you read it in chunks. Read.tables() is also probably not
+the best way to read large datasets in general into R. So the important parameters here
+are what file you wanna read, weather is has a header? What's the separation between elements,
+weather it has row names and how many rows do you wanna read? The related functions read.csv and
+read.csv2 will also be briefly discussed. So if we wanna read the cameraData, we could try just sending it to
+read.table() just like this. We say, cameraData is gonna be
+the variable we're going to assign and we're gonna use the read.table command and
+we're gonna read the file cameras.csv. So the problem that you'll get
+back immediately is an error. It says,
+line 1 did not have 13 elements and the reason why is because there's
+commas separating cameras.csv. But the default for read.table() is
+to look for a tab delimited file. So if you actually try to
+look at this variable, cameraData, it doesn't exist,
+because R wasn't able to read it in. So what we can do instead is read.table()
+with setting the sep command. So this is the separation,
+we're gonna set it equal to quotes comma. And so what that does is it says,
+look through the file and assume that all the different values
+will be separated by balance. We're also gonna tell it header = TRUE, because the variable names are included
+at the top of each column in the file. So if we do that and assign
+the results to cameraData variable and then use the head command, this will
+look at a top few rows of that file. And so for example, on the first row,
+now we see that data on the first Camera. It wraps around, because of the way
+that the slide looks here, but each row has now been read into one
+row of the cameraData variable. You can also use read.csv in the case that
+you have a csv file, it automatically sets sep equal to the quote comma and
+it automatically sets header = TRUE. And so, if you have a CSV file, which
+is one of the most common flat formats that you'll see for data,
+you can use the read.csv command. Some more important parameters
+that you can pass, for example, to read.table is
+you can tell it quotes. So for example, you can say,
+whether there are quoted values. If you say, quote = " ", like that. You get no quotes in the file, na.strings tell r what the character
+is that represents a missing value. So the most typical character that
+you'll see in our datasets in na, but that character might also be minus 1 or
+999, 99 or something else. Nrows tells you how many
+rows in the file to read. So for example, if you only wanna
+read the first ten lines of the file, you can use nrows = 10 as one of the
+arguments to the read.table() function. Skip will also tell you how many
+lines to skip before you read. So for example, suppose you wanna
+read the 3rd through the 13th line, you would set skip equal to 2 and
+nrows = 10. So my experience suggest that
+the biggest common problem that I see in a lot of files
+is that you see one of these quotation marks placed
+in the data value somewhere. So when that happens, R gets confused,
+because it's not looking for those quotes. And so if you set quote=" ",
+this often resolves those issues and then you won't have to deal with them. So it's just a helpful tip, whenever you
+see sort of data sets that aren't getting read in or
+getting read in as very long vectors, setting this quote variable in that
+way can be one way to address it.

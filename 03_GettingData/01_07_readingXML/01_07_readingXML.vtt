@@ -1,0 +1,1147 @@
+WEBVTT
+
+1
+00:00:00.430 --> 00:00:03.020
+This lecture is about reading XML.
+
+2
+00:00:03.020 --> 00:00:05.170
+So if you don't know about XML, it's
+
+3
+00:00:05.170 --> 00:00:08.260
+Extensible Markup Language, is what it
+stands for.
+
+4
+00:00:08.260 --> 00:00:11.510
+So it's frequently used to score
+structured data.
+
+5
+00:00:11.510 --> 00:00:14.450
+It's particularly widely used in internet
+applications.
+
+6
+00:00:14.450 --> 00:00:17.010
+So you'll see it a lot when you're doing
+
+7
+00:00:17.010 --> 00:00:19.260
+things like web scraping or trying to get
+data from
+
+8
+00:00:19.260 --> 00:00:23.180
+an internet API or trying to download data
+from say,
+
+9
+00:00:23.180 --> 00:00:27.400
+open data of websites, say like an open
+government website.
+
+10
+00:00:27.400 --> 00:00:30.730
+So, extracting HTML, XML is actually the
+basis
+
+11
+00:00:30.730 --> 00:00:33.450
+for most of the web-scraping that you'll
+see.
+
+12
+00:00:33.450 --> 00:00:35.160
+There are two components to an XML file.
+
+13
+00:00:35.160 --> 00:00:36.220
+There's the markup.
+
+14
+00:00:36.220 --> 00:00:38.160
+That's the labels that give the text
+structure.
+
+15
+00:00:38.160 --> 00:00:40.170
+So you can imagine if you just started
+typing, you
+
+16
+00:00:40.170 --> 00:00:42.800
+would end up with sort of an unstructured
+text file.
+
+17
+00:00:42.800 --> 00:00:46.960
+The markup is the way that you add labels
+so that the file ends being structured.
+
+18
+00:00:46.960 --> 00:00:50.190
+And then the content is the actual text
+that you type in,
+
+19
+00:00:50.190 --> 00:00:54.620
+in between sort of the labels that give
+the structure to the text.
+
+20
+00:00:54.620 --> 00:00:57.840
+So to be a little bit more concrete, we'll
+talk about tags, elements and attributes.
+
+21
+00:00:58.840 --> 00:01:01.530
+So tags correspond to the labels, that
+there are labels that are going to
+
+22
+00:01:01.530 --> 00:01:06.220
+be applying to particular parts of the
+text so that it will be structured.
+
+23
+00:01:06.220 --> 00:01:07.660
+So, there are start tags.
+
+24
+00:01:07.660 --> 00:01:09.500
+And so, start tags look like this.
+
+25
+00:01:09.500 --> 00:01:14.400
+So, they start with an open caret on one
+side and then they
+
+26
+00:01:14.400 --> 00:01:18.380
+have a, a phrase and then a closed caret
+on the other side.
+
+27
+00:01:18.380 --> 00:01:21.830
+So, you'll have that at the beginning of a
+certain part of the text.
+
+28
+00:01:21.830 --> 00:01:27.140
+So, that will start them, that text as a,
+a labelled section called section.
+
+29
+00:01:27.140 --> 00:01:30.750
+And then it ends with an end tag which
+looks like this.
+
+30
+00:01:30.750 --> 00:01:32.640
+It has the same phrase as before, but it
+
+31
+00:01:32.640 --> 00:01:35.700
+starts with a forward slash inside of the
+two carets.
+
+32
+00:01:37.270 --> 00:01:40.960
+And so the empty tags are tags that
+
+33
+00:01:40.960 --> 00:01:43.230
+correspond to lines where you don't
+necessarily need
+
+34
+00:01:43.230 --> 00:01:47.560
+both an open and then a close tag to
+deliminate a certain part of a text.
+
+35
+00:01:47.560 --> 00:01:50.740
+You might just want to denote one specific
+line, say, as a line break.
+
+36
+00:01:50.740 --> 00:01:53.910
+And so what you do is, you have the same
+sort of structure.
+
+37
+00:01:53.910 --> 00:01:57.540
+Only you have the forward slash just over
+here at the right end.
+
+38
+00:01:57.540 --> 00:01:59.810
+So elements are specific examples of tags.
+
+39
+00:01:59.810 --> 00:02:02.170
+So, for example, one element of the XML
+
+40
+00:02:02.170 --> 00:02:07.190
+markup could be, the tag greeting, with
+the end
+
+41
+00:02:07.190 --> 00:02:09.820
+tag greeting over here on the right hand
+side
+
+42
+00:02:09.820 --> 00:02:12.309
+and in between it the content, the hello
+world.
+
+43
+00:02:13.480 --> 00:02:15.420
+So, attributes are components of the
+label.
+
+44
+00:02:15.420 --> 00:02:19.510
+So, you can actually add to the tags
+components.
+
+45
+00:02:19.510 --> 00:02:24.060
+And so, for example, you might have an
+image tag.
+
+46
+00:02:24.060 --> 00:02:26.170
+So, what you might want to have
+corresponding to
+
+47
+00:02:26.170 --> 00:02:28.950
+that image is an attribute that's the
+source.
+
+48
+00:02:28.950 --> 00:02:31.100
+That's where the image is actually coming
+from.
+
+49
+00:02:31.100 --> 00:02:35.809
+And then an alternate phrase for that tag,
+and that could be instructor, for example.
+
+50
+00:02:36.970 --> 00:02:40.590
+So another example here is suppose you
+have a tag that's
+
+51
+00:02:40.590 --> 00:02:44.240
+a step tag, and you might have multiple
+steps, so tag
+
+52
+00:02:44.240 --> 00:02:47.110
+number step number one might be tagged
+with number equal 1
+
+53
+00:02:47.110 --> 00:02:50.100
+and then two and then this is number three
+step three.
+
+54
+00:02:50.100 --> 00:02:53.530
+And then it needs to end with an end tag
+just like it did before.
+
+55
+00:02:53.530 --> 00:02:55.010
+If you want to know a lot more about XML
+and
+
+56
+00:02:55.010 --> 00:02:57.770
+it's probably Probably a good idea before
+doing a whole bunch
+
+57
+00:02:57.770 --> 00:03:00.280
+more with this lecture, if you could go
+and see, the
+
+58
+00:03:00.280 --> 00:03:03.660
+Wikepedia entry on XML, which is actually
+quite comprehensive and nice.
+
+59
+00:03:04.770 --> 00:03:06.560
+So this is an example XML file.
+
+60
+00:03:06.560 --> 00:03:08.850
+It's a little bit hard to see, but you can
+see it okay if
+
+61
+00:03:08.850 --> 00:03:12.670
+you go actually to the web link here at
+the bottom of the page.
+
+62
+00:03:12.670 --> 00:03:15.610
+And so the idea here is you have a text
+file,
+
+63
+00:03:15.610 --> 00:03:19.080
+and that text file has lots of tags and
+content in it.
+
+64
+00:03:19.080 --> 00:03:23.800
+So for example here you have a tag that
+says food and then
+
+65
+00:03:23.800 --> 00:03:28.240
+here is a close tag for that tag that says
+food down here.
+
+66
+00:03:28.240 --> 00:03:32.020
+So you can see they're indented at the
+same level within this file.
+
+67
+00:03:32.020 --> 00:03:36.140
+And then for this particular food element
+you actually have a name, so there's
+
+68
+00:03:36.140 --> 00:03:41.430
+the open tag for name and there's the
+close tag for name, and this particular.
+
+69
+00:03:41.430 --> 00:03:44.910
+Element is named sort of Belgian Waffle,
+delicious.
+
+70
+00:03:46.050 --> 00:03:48.220
+And then there's other tags that
+correspond
+
+71
+00:03:48.220 --> 00:03:51.060
+to other components of this particular
+food element.
+
+72
+00:03:51.060 --> 00:03:53.150
+And then you go down and there's another
+
+73
+00:03:53.150 --> 00:03:55.160
+food elements with another names and so
+forth.
+
+74
+00:03:55.160 --> 00:03:57.290
+So that's what an xml file look at.
+
+75
+00:03:57.290 --> 00:03:59.740
+It looks like and I encourage you to go
+look the
+
+76
+00:03:59.740 --> 00:04:01.800
+the bigger version of that when you go to
+that web link.
+
+77
+00:04:03.180 --> 00:04:06.660
+So you can read the file into R, you can
+do this
+
+78
+00:04:06.660 --> 00:04:11.770
+with the XML package so we're loading the
+XML package all caps XML.
+
+79
+00:04:11.770 --> 00:04:13.250
+And then you give it the url.
+
+80
+00:04:13.250 --> 00:04:15.080
+So in this case, we're going to give it
+the url from
+
+81
+00:04:15.080 --> 00:04:19.300
+the previous XML file we were looking at
+on that previous screen.
+
+82
+00:04:19.300 --> 00:04:24.040
+And then we can use the function XML three
+parts to parse out that XML file.
+
+83
+00:04:24.040 --> 00:04:25.590
+So what this does is.
+
+84
+00:04:25.590 --> 00:04:29.830
+It loads the document into a memory, into
+a R memory in a way
+
+85
+00:04:29.830 --> 00:04:33.170
+that you can then parse it and get access
+to different parts of it.
+
+86
+00:04:33.170 --> 00:04:37.570
+So, within R, it's still a structured
+object, so we have to
+
+87
+00:04:37.570 --> 00:04:42.220
+be able to use different functions to
+access different parts of that object.
+
+88
+00:04:42.220 --> 00:04:45.190
+So, the first thing that we want to look
+at is the root node.
+
+89
+00:04:45.190 --> 00:04:48.120
+So, the root node you can get with XML
+root.
+
+90
+00:04:48.120 --> 00:04:50.110
+And so what that is, is it's sort of the
+wrapper,
+
+91
+00:04:50.110 --> 00:04:53.400
+you can think of it as the wrapper for the
+entire document.
+
+92
+00:04:53.400 --> 00:04:57.740
+And so if you execute this xml root
+command, you'll
+
+93
+00:04:57.740 --> 00:05:01.250
+have access to that particular element to
+that xml file.
+
+94
+00:05:01.250 --> 00:05:06.500
+And then if you want to get the name out,
+you can actually use the xmlname
+
+95
+00:05:06.500 --> 00:05:10.860
+applied to that node to get the name out,
+in this case, it's the breakfast menu.
+
+96
+00:05:12.480 --> 00:05:14.770
+You can also look at the names of the root
+node.
+
+97
+00:05:14.770 --> 00:05:17.510
+And so, when you do names of the root node
+what it's actually
+
+98
+00:05:17.510 --> 00:05:22.800
+telling you is what all the nested
+elements within that root node are.
+
+99
+00:05:22.800 --> 00:05:24.760
+So, the root node wraps the whole document
+
+100
+00:05:24.760 --> 00:05:27.750
+and the whole document is a breakfast
+menu.
+
+101
+00:05:27.750 --> 00:05:30.490
+And then there are five different
+breakfast items on this
+
+102
+00:05:30.490 --> 00:05:33.220
+menu, and each one is wrapped within a
+food element.
+
+103
+00:05:33.220 --> 00:05:37.450
+So, you get five food elements, if you
+look at names of the root node.
+
+104
+00:05:37.450 --> 00:05:37.950
+So,
+
+105
+00:05:39.870 --> 00:05:40.880
+the next thing that you could use is
+
+106
+00:05:40.880 --> 00:05:43.340
+actually directly access parts of the XML
+document.
+
+107
+00:05:43.340 --> 00:05:47.100
+And you can do it in a little bit in the
+same that way you access a list in R.
+
+108
+00:05:47.100 --> 00:05:48.580
+And so, for example, if you want to look
+at.
+
+109
+00:05:48.580 --> 00:05:51.060
+You, you have this root node element that
+we've extracted.
+
+110
+00:05:51.060 --> 00:05:54.230
+And we can look at the first component of
+that or the
+
+111
+00:05:54.230 --> 00:05:57.410
+first element of that and we do it by
+using double brackets here.
+
+112
+00:05:57.410 --> 00:06:00.470
+That's how you access the first element,
+say in a list.
+
+113
+00:06:00.470 --> 00:06:04.040
+And so, what you get out, actually, is the
+first food element, like this.
+
+114
+00:06:04.040 --> 00:06:06.350
+So it contains the food tags, and it also
+
+115
+00:06:06.350 --> 00:06:09.610
+contains all the information about the
+first food element.
+
+116
+00:06:09.610 --> 00:06:13.010
+Then, if you want to keep drilling down
+into smaller and smaller parts of
+
+117
+00:06:13.010 --> 00:06:16.680
+the XML document, you can do sub-setting,
+just like you do with lists.
+
+118
+00:06:16.680 --> 00:06:22.000
+So first, this exit rootNode and the first
+bracket one, will again give you this.
+
+119
+00:06:23.210 --> 00:06:25.820
+Element here with the entire food
+component and then if you
+
+120
+00:06:25.820 --> 00:06:28.780
+want to take the first element of that,
+you'll just repeat the
+
+121
+00:06:28.780 --> 00:06:31.980
+process again and then you'll be looking
+at just the name
+
+122
+00:06:31.980 --> 00:06:33.510
+the belgian waffles because that's the
+
+123
+00:06:33.510 --> 00:06:36.550
+first subcomponent of the first
+subcomponent.
+
+124
+00:06:39.190 --> 00:06:42.990
+You can actually programmatically extract
+different parts of the file.
+
+125
+00:06:42.990 --> 00:06:47.060
+So you can do that with the XML Xsupply
+command,
+
+126
+00:06:47.060 --> 00:06:49.690
+and so what you do is you pass that a
+
+127
+00:06:49.690 --> 00:06:53.320
+parsed XML object and then you tell it
+what function
+
+128
+00:06:53.320 --> 00:06:55.980
+you like to apply; so in this case XML
+value.
+
+129
+00:06:55.980 --> 00:06:57.880
+So what that's going to do is, it's
+going to
+
+130
+00:06:57.880 --> 00:06:59.730
+loop through all of the elements of the
+
+131
+00:06:59.730 --> 00:07:03.050
+root node and get the XML value And
+
+132
+00:07:03.050 --> 00:07:05.440
+by default this is going to do this
+recursively.
+
+133
+00:07:05.440 --> 00:07:07.140
+So, if you apply it in this way,
+
+134
+00:07:07.140 --> 00:07:09.840
+since rootNode contains the entire
+document, it's going to
+
+135
+00:07:09.840 --> 00:07:11.660
+go through and get every single value of
+
+136
+00:07:11.660 --> 00:07:14.470
+every sing tagged element in the entire
+document.
+
+137
+00:07:14.470 --> 00:07:16.770
+And so you just get a bunch of text all
+
+138
+00:07:16.770 --> 00:07:19.280
+strung together that's all the text that
+was in that document.
+
+139
+00:07:20.770 --> 00:07:22.650
+You might be a little bit more specific
+
+140
+00:07:22.650 --> 00:07:25.160
+and get a specific component of the
+document.
+
+141
+00:07:25.160 --> 00:07:30.530
+And you can do that using the XPath
+language, so this a whole other language
+
+142
+00:07:30.530 --> 00:07:34.830
+that you have to learn in addition to XML
+to be able to access the data.
+
+143
+00:07:34.830 --> 00:07:36.470
+But if you learn just a few of the
+
+144
+00:07:36.470 --> 00:07:39.240
+components then you'll be a long way along
+the way.
+
+145
+00:07:40.580 --> 00:07:42.480
+I'm going to talk a little bit about this,
+but
+
+146
+00:07:42.480 --> 00:07:44.500
+there's actually really nice set of
+lecture notes that are
+
+147
+00:07:44.500 --> 00:07:46.310
+available here that go into this in a
+little
+
+148
+00:07:46.310 --> 00:07:49.960
+bit more depth, if you find yourself a
+little bit.
+
+149
+00:07:49.960 --> 00:07:51.060
+Lost after this lecture.
+
+150
+00:07:52.210 --> 00:07:55.250
+So the first thing that you're going to be
+looking at is the top
+
+151
+00:07:55.250 --> 00:08:00.000
+level node of each element, and that you
+get with a forward slash node.
+
+152
+00:08:00.000 --> 00:08:02.560
+The node at any level is double slash
+node.
+
+153
+00:08:02.560 --> 00:08:06.750
+And then you can actually extract specific
+nodes with specific attributes.
+
+154
+00:08:06.750 --> 00:08:09.485
+And we'll talk about how to do that in the
+next couple of slides.
+
+155
+00:08:09.485 --> 00:08:13.140
+[SOUND] So the first thing that you're
+going to want to be able to do is
+
+156
+00:08:13.140 --> 00:08:16.560
+get the items on the menu and their prices
+and so the way that
+
+157
+00:08:16.560 --> 00:08:17.960
+we're going to do that is we're again
+
+158
+00:08:17.960 --> 00:08:20.720
+going to use this xpathSApply but now
+we're
+
+159
+00:08:20.720 --> 00:08:21.940
+going to be a little bit more targeted
+
+160
+00:08:21.940 --> 00:08:24.650
+about which data we're going to be
+extracting.
+
+161
+00:08:24.650 --> 00:08:25.990
+So we're giving you, again, [INAUDIBLE]
+the rootNode.
+
+162
+00:08:25.990 --> 00:08:30.000
+That's the entire document, and so then
+what we're going to be doing
+
+163
+00:08:30.000 --> 00:08:35.820
+is we're going to be using This xpack
+element here is //name.
+
+164
+00:08:35.820 --> 00:08:37.930
+And so, what that's going to do is it's
+
+165
+00:08:37.930 --> 00:08:41.810
+going to go through and get all of the
+nodes
+
+166
+00:08:41.810 --> 00:08:46.600
+that correspond to an element with title
+name and
+
+167
+00:08:46.600 --> 00:08:48.330
+then it's going to get the xmlvalue of
+those nodes.
+
+168
+00:08:48.330 --> 00:08:51.010
+So, what it's going to do is it's going to
+take
+
+169
+00:08:51.010 --> 00:08:54.340
+out basically all of the elements of that
+XML file that
+
+170
+00:08:54.340 --> 00:08:56.460
+are tagged with name and so you can see,
+you end
+
+171
+00:08:56.460 --> 00:08:58.320
+up with the names of all of the items on
+the menu.
+
+172
+00:08:59.480 --> 00:09:01.440
+You can also do the same thing.
+
+173
+00:09:01.440 --> 00:09:06.380
+You send the exact same rootNode to
+xpathSApply, only now you
+
+174
+00:09:06.380 --> 00:09:09.160
+can say I actually just want the nodes
+that correspond to price.
+
+175
+00:09:09.160 --> 00:09:10.980
+And again I want their xmlValue.
+
+176
+00:09:10.980 --> 00:09:14.880
+And so it will plot out the xmel values
+which the prices of the values and now
+
+177
+00:09:14.880 --> 00:09:20.450
+we extract from that xmel file the names
+of the menu items as well as their prices.
+
+178
+00:09:22.100 --> 00:09:23.450
+To give you an example of, it's a
+
+179
+00:09:23.450 --> 00:09:25.120
+little more complicated I am actually
+going to use
+
+180
+00:09:25.120 --> 00:09:27.850
+a website of the Baltimore Ravens which is
+an
+
+181
+00:09:27.850 --> 00:09:31.240
+American football team that is based here
+on Baltimore.
+
+182
+00:09:31.240 --> 00:09:34.840
+So, this the homepage of that team on
+ESPN.
+
+183
+00:09:34.840 --> 00:09:38.230
+Which is a sports channel in the U.S. and
+so
+
+184
+00:09:38.230 --> 00:09:40.640
+what we're going to do is actually look at
+the source code.
+
+185
+00:09:40.640 --> 00:09:43.160
+So, if you right click on the page and say
+view
+
+186
+00:09:43.160 --> 00:09:46.880
+source what you'll see is a source
+document that looks like this.
+
+187
+00:09:46.880 --> 00:09:48.740
+It's actually quite complicated.
+
+188
+00:09:48.740 --> 00:09:50.760
+That's the source code that actually
+
+189
+00:09:50.760 --> 00:09:54.450
+demonstrates, that's process to show you
+the
+
+190
+00:09:54.450 --> 00:09:57.650
+website that you actually see when you go
+navigate your browser to that website.
+
+191
+00:09:57.650 --> 00:10:01.160
+So we're going to actually drill into this
+website
+
+192
+00:10:01.160 --> 00:10:04.310
+source code and see if we can extract some
+information.
+
+193
+00:10:04.310 --> 00:10:07.110
+So again I'm going to pass the file URL.
+
+194
+00:10:07.110 --> 00:10:10.920
+This is the URL of that website, if you go
+back to the previous page.
+
+195
+00:10:10.920 --> 00:10:14.680
+So now, since I'm parsing an HTML file,
+instead of an XML
+
+196
+00:10:14.680 --> 00:10:20.130
+file, I'm going to use HTML tree parse
+instead of XML tree parse.
+
+197
+00:10:20.130 --> 00:10:24.310
+Um,the difference is our, it's different
+enough you want to
+
+198
+00:10:24.310 --> 00:10:27.840
+use HTML tree parse when you're parsing an
+HTML file.
+
+199
+00:10:27.840 --> 00:10:31.510
+And then I'm going to pass the command use
+internal equals true, so
+
+200
+00:10:31.510 --> 00:10:35.940
+that I can get all the different nodes
+inside of that, that file.
+
+201
+00:10:35.940 --> 00:10:37.720
+So now what I'm going to do is, I'm again
+going
+
+202
+00:10:37.720 --> 00:10:42.920
+to use the xpathSApply to programatically
+extract some components of this document.
+
+203
+00:10:42.920 --> 00:10:45.300
+So I'm going to start with the whole
+document again.
+
+204
+00:10:45.300 --> 00:10:47.820
+And now what I'm going to try to do is,
+I'm going to
+
+205
+00:10:47.820 --> 00:10:52.430
+again extract the XML value to the value
+inside of certain elements.
+
+206
+00:10:52.430 --> 00:10:55.090
+But I want to find very specific kinds of
+elements.
+
+207
+00:10:55.090 --> 00:10:56.080
+So here's what I'm going to do.
+
+208
+00:10:56.080 --> 00:10:57.910
+I'm going to look for elements.
+
+209
+00:10:57.910 --> 00:11:02.980
+That are list items li, and that have a
+particular class.
+
+210
+00:11:02.980 --> 00:11:06.520
+So they have class equal to score.
+
+211
+00:11:06.520 --> 00:11:08.080
+And so, what this is going to do is it's
+
+212
+00:11:08.080 --> 00:11:10.300
+going to go through the entire document,
+and any time it
+
+213
+00:11:10.300 --> 00:11:13.100
+sees a tag that is a, a list item,
+
+214
+00:11:13.100 --> 00:11:15.360
+it's going to check and see if it's class
+is score.
+
+215
+00:11:15.360 --> 00:11:17.560
+And if it's class is score it'll return
+the XML value.
+
+216
+00:11:17.560 --> 00:11:22.360
+So it turns out if you go back to this
+website and you look very very
+
+217
+00:11:22.360 --> 00:11:27.850
+carefully, That you can see for example
+there are these list items and
+
+218
+00:11:27.850 --> 00:11:31.810
+the class in this class is equal to the
+team name and so the
+
+219
+00:11:31.810 --> 00:11:34.700
+next element that I'm going to be
+extracting
+
+220
+00:11:34.700 --> 00:11:36.850
+on this page is actually the team name.
+
+221
+00:11:36.850 --> 00:11:37.820
+So it's the same thing.
+
+222
+00:11:37.820 --> 00:11:40.370
+I look for a list item with class equal
+
+223
+00:11:40.370 --> 00:11:42.870
+to team name and it will extract those
+team names.
+
+224
+00:11:42.870 --> 00:11:45.980
+So the way this works is you go to the
+website and
+
+225
+00:11:45.980 --> 00:11:51.080
+you find the tag and any attributes that
+you want to extract,
+
+226
+00:11:51.080 --> 00:11:55.050
+and then you need to write them into this
+xpath language to
+
+227
+00:11:55.050 --> 00:11:59.080
+extract only the data for those specific
+elements with xpath, as applied.
+
+228
+00:11:59.080 --> 00:12:03.800
+So, if I do this, I end up with the scores
+for each of the games and the teams.
+
+229
+00:12:03.800 --> 00:12:06.970
+So, I've scraped from that website
+information directly using
+
+230
+00:12:09.280 --> 00:12:12.370
+This is a very brief introduction to XML.
+
+231
+00:12:12.370 --> 00:12:15.410
+The xml packaging r and xml in general.
+
+232
+00:12:15.410 --> 00:12:19.190
+If you go and check out the xml tutorials
+for the
+
+233
+00:12:19.190 --> 00:12:22.440
+xml package there's a short one that's
+really good and a long
+
+234
+00:12:22.440 --> 00:12:27.080
+one that's extremely extensive and should
+only be read after reading the
+
+235
+00:12:27.080 --> 00:12:29.800
+short one so you get an idea of what is
+going on.
+
+236
+00:12:29.800 --> 00:12:32.450
+And then there's really outstanding guide
+to the XML
+
+237
+00:12:32.450 --> 00:12:34.260
+package that's linked to here as well that
+will
+
+238
+00:12:34.260 --> 00:12:35.860
+give you a lot of information about how
+you
+
+239
+00:12:35.860 --> 00:12:39.260
+can use XML to programatically extract
+information from websites.

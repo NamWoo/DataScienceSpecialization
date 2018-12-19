@@ -1,0 +1,855 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:04.390
+This lecture is about the data.table
+package which is a often faster more
+
+2
+00:00:04.390 --> 00:00:08.784
+memory efficient version of the data
+frames that you're commonly using when
+
+3
+00:00:08.784 --> 00:00:10.215
+your analyzing data NR.
+
+4
+00:00:10.215 --> 00:00:12.704
+So the data.table inherits
+from a data frame so
+
+5
+00:00:12.704 --> 00:00:16.576
+all functions that accept that
+data.frame should work on data.table.
+
+6
+00:00:16.576 --> 00:00:20.741
+And there's a pretty steady set of
+updates to data that table in case it
+
+7
+00:00:20.741 --> 00:00:22.530
+doesn't work.
+
+8
+00:00:22.530 --> 00:00:23.490
+It's written in C so
+
+9
+00:00:23.490 --> 00:00:28.470
+it can be much, much faster than some of
+the functions that are done in data.frame.
+
+10
+00:00:28.470 --> 00:00:32.850
+It's much, much faster at subsetting,
+grouping variables, and
+
+11
+00:00:32.850 --> 00:00:38.120
+updating variables than data
+frames are but it requires you
+
+12
+00:00:38.120 --> 00:00:41.340
+to learn a little bit of a new syntax so
+there's a little bit of a learning curve.
+
+13
+00:00:42.790 --> 00:00:47.940
+So if we load the data.table package
+we can create a data frame like this.
+
+14
+00:00:47.940 --> 00:00:49.950
+This is the usual way that
+we create a data frame.
+
+15
+00:00:49.950 --> 00:00:54.070
+And if we look at that we see it has,
+you know, three variables, x, y,
+
+16
+00:00:54.070 --> 00:00:56.560
+and z stored in each of the columns.
+
+17
+00:00:56.560 --> 00:01:00.580
+And we can also create a data table, and
+we create it in exactly the same way.
+
+18
+00:01:00.580 --> 00:01:05.590
+And so we just pass it the arguments for
+the variables that we want to create.
+
+19
+00:01:05.590 --> 00:01:09.490
+And if you look at the top of
+that data frame you see it looks
+
+20
+00:01:09.490 --> 00:01:12.440
+very similar to what you would expect
+if you had created a data frame.
+
+21
+00:01:14.580 --> 00:01:18.240
+So one thing that you can do is see all
+of that data that tables in memory, so
+
+22
+00:01:18.240 --> 00:01:20.130
+you do that with the tables command.
+
+23
+00:01:20.130 --> 00:01:23.370
+It has an s at the end,
+it's different than the table command.
+
+24
+00:01:23.370 --> 00:01:29.110
+And so what it'll tell you is the name
+of the data table, how many rows,
+
+25
+00:01:29.110 --> 00:01:34.750
+how many megabytes how many columns and
+if there's a key.
+
+26
+00:01:34.750 --> 00:01:37.530
+And so I'll talk a little bit more
+about what I mean by a key in a minute.
+
+27
+00:01:37.530 --> 00:01:42.640
+So the first thing that you might want
+to be able to do is subset rows and
+
+28
+00:01:42.640 --> 00:01:43.945
+so just like with.
+
+29
+00:01:43.945 --> 00:01:45.535
+Subsetting the rows in the data frame.
+
+30
+00:01:45.535 --> 00:01:52.085
+You can subset with the first spot in
+the square brackets, before the comma.
+
+31
+00:01:52.085 --> 00:01:55.985
+You can also subset just like you did
+rows, like you did with the data frame,
+
+32
+00:01:55.985 --> 00:02:00.035
+in a similar way,
+by accessing a particular element, y, and
+
+33
+00:02:00.035 --> 00:02:02.625
+looking at only the values
+where y is equal to a.
+
+34
+00:02:04.580 --> 00:02:09.290
+One thing that is a little bit different
+is when you subset with only one index,
+
+35
+00:02:09.290 --> 00:02:11.090
+it subsets based on the rows.
+
+36
+00:02:11.090 --> 00:02:15.090
+So if I do this data table,
+I take the second or third element,
+
+37
+00:02:15.090 --> 00:02:18.200
+that's going to take the second and third
+rows that come out of that data table.
+
+38
+00:02:20.110 --> 00:02:22.750
+What happens when you
+try to subset columns,
+
+39
+00:02:22.750 --> 00:02:25.520
+if you just try to subset columns
+the way you're used to in data frames,
+
+40
+00:02:25.520 --> 00:02:28.700
+this is where they really diverge
+data table and data frame.
+
+41
+00:02:28.700 --> 00:02:31.920
+It's not actually trying to subset
+the columns using the same subsetting
+
+42
+00:02:31.920 --> 00:02:35.330
+function that happens with data frame,
+it does something a little bit different.
+
+43
+00:02:35.330 --> 00:02:40.440
+And so what it's using is expressions to
+be able to summarize the data in various,
+
+44
+00:02:40.440 --> 00:02:41.600
+different ways.
+
+45
+00:02:41.600 --> 00:02:44.490
+So, any expression is
+
+46
+00:02:44.490 --> 00:02:48.830
+some set of statements that
+are between curly brackets, like this.
+
+47
+00:02:48.830 --> 00:02:53.830
+So here's an example of an statement
+that says print ten and
+
+48
+00:02:53.830 --> 00:02:56.580
+then five, and so
+this actually prints out ten.
+
+49
+00:02:56.580 --> 00:03:01.440
+But when you tell k to print, it just
+prints out the variable five at the end.
+
+50
+00:03:01.440 --> 00:03:04.250
+So, this will come into a play in a minute
+when we try to use expressions to
+
+51
+00:03:04.250 --> 00:03:05.148
+summarize data sets.
+
+52
+00:03:06.260 --> 00:03:11.070
+So for example, you can, instead of
+putting an index here in the second
+
+53
+00:03:11.070 --> 00:03:16.040
+part of the brackets, you can actually
+pass a list of functions that you want
+
+54
+00:03:16.040 --> 00:03:20.180
+to perform where the functions are applied
+to variables named by columns.
+
+55
+00:03:20.180 --> 00:03:23.670
+So here x is one of the variables
+in the data table and
+
+56
+00:03:23.670 --> 00:03:25.330
+z is one of the variables
+in the data table.
+
+57
+00:03:25.330 --> 00:03:30.210
+And note we don't have to use parentheses,
+or sorry, quotation marks.
+
+58
+00:03:30.210 --> 00:03:33.070
+It will just recognize what the variables.
+
+59
+00:03:33.070 --> 00:03:34.240
+That you're trying to use R.
+
+60
+00:03:34.240 --> 00:03:39.000
+And so, this will report the mean of
+the x values and the sum of the z values.
+
+61
+00:03:39.000 --> 00:03:44.090
+You can also do that to perform
+pretty much any function.
+
+62
+00:03:44.090 --> 00:03:47.460
+You can say, for example,
+get a table of the y values.
+
+63
+00:03:47.460 --> 00:03:50.890
+And so, anytime you pass a list
+into this second argument,
+
+64
+00:03:50.890 --> 00:03:53.430
+it'll perform those functions and
+return the values.
+
+65
+00:03:53.430 --> 00:03:55.640
+That's good for summarizing data.
+
+66
+00:03:55.640 --> 00:03:57.560
+Another thing that it does very fast and
+
+67
+00:03:57.560 --> 00:04:01.110
+very memory efficiently
+is to add a new column.
+
+68
+00:04:01.110 --> 00:04:05.150
+So suppose you wanted to add a new column
+to your data table where a new column was
+
+69
+00:04:05.150 --> 00:04:09.900
+equal to this z variable squared
+you can use this command where it's
+
+70
+00:04:09.900 --> 00:04:14.670
+colon equals to add that
+variable w to the data table.
+
+71
+00:04:14.670 --> 00:04:18.170
+And the nice thing is is usually when
+you're adding a new variable to a data
+
+72
+00:04:18.170 --> 00:04:22.980
+frame, R will copy over the entire data
+frame and add a new variable to it,
+
+73
+00:04:22.980 --> 00:04:26.590
+so you get two copies of
+the the data frame and memory.
+
+74
+00:04:26.590 --> 00:04:28.180
+So when dealing with big data sets,
+
+75
+00:04:28.180 --> 00:04:30.240
+this is obviously going to
+cause lots of memory problems,
+
+76
+00:04:30.240 --> 00:04:33.930
+which you don't have with data table
+because a new copy isn't being created.
+
+77
+00:04:34.990 --> 00:04:36.920
+You have to be a little bit
+careful with that though, so
+
+78
+00:04:36.920 --> 00:04:43.390
+suppose we set a second data table to
+be assigned to the first data table.
+
+79
+00:04:43.390 --> 00:04:46.040
+And then we make a change
+to the first data table.
+
+80
+00:04:46.040 --> 00:04:48.980
+Because a copy hasn't been made,
+if we go back and
+
+81
+00:04:48.980 --> 00:04:52.790
+look at the first data table,
+obviously we've made a change to that,
+
+82
+00:04:52.790 --> 00:04:55.940
+we've changed the Y variable
+to be all equal to's.
+
+83
+00:04:55.940 --> 00:05:00.560
+But the second data table was assigned
+to be the first data table and
+
+84
+00:05:00.560 --> 00:05:04.590
+since a copy wasn't made, we've actually
+changed data table two as well.
+
+85
+00:05:04.590 --> 00:05:07.950
+So you have to be able to, if you're
+trying to create a copy you have to
+
+86
+00:05:07.950 --> 00:05:10.940
+explicitly do that with the copy function.
+
+87
+00:05:10.940 --> 00:05:15.450
+So if you use the function copy you'd
+be able to copy the data table over.
+
+88
+00:05:16.870 --> 00:05:20.730
+So the next thing that you can do is
+you can actually perform multiple step
+
+89
+00:05:20.730 --> 00:05:24.470
+functions to create new variables.
+
+90
+00:05:24.470 --> 00:05:26.610
+So for example here I have an expression.
+
+91
+00:05:26.610 --> 00:05:30.130
+See it starts with the curly bracket and
+it ends with a curly bracket.
+
+92
+00:05:30.130 --> 00:05:33.080
+And each statement is
+followed by a semi-colon.
+
+93
+00:05:33.080 --> 00:05:36.460
+So the first statement is I'm going
+to assign to the temporary variable,
+
+94
+00:05:36.460 --> 00:05:38.790
+the values of X plus Z, and
+
+95
+00:05:38.790 --> 00:05:42.560
+then I'm going to take the log base two
+of that temporary variable plus five.
+
+96
+00:05:42.560 --> 00:05:47.130
+And so as you remember, the last
+thing that gets returned from this
+
+97
+00:05:47.130 --> 00:05:50.120
+expression in the evaluation
+of this last statement.
+
+98
+00:05:51.710 --> 00:05:54.230
+And so what ends up happening is
+
+99
+00:05:54.230 --> 00:06:00.070
+this variable m will be assigned to be
+log base two of x plus z plus five.
+
+100
+00:06:00.070 --> 00:06:02.470
+So those sorts of multi step
+
+101
+00:06:02.470 --> 00:06:05.020
+operations can be handled
+very easily with data table.
+
+102
+00:06:06.300 --> 00:06:08.950
+You can also do plyr like operations.
+
+103
+00:06:08.950 --> 00:06:14.030
+So for example we can add to this
+data table a variable like A which is
+
+104
+00:06:14.030 --> 00:06:14.860
+created in zero,
+
+105
+00:06:14.860 --> 00:06:19.260
+equal to true when X is greater than
+zero and false when X is less than zero.
+
+106
+00:06:19.260 --> 00:06:22.730
+So now we have a binary value
+A that we can work with.
+
+107
+00:06:22.730 --> 00:06:27.490
+So suppose we want to summarize
+another variable by the cases where
+
+108
+00:06:27.490 --> 00:06:31.300
+when X is greater than 0 versus
+the cases where X is less than 0.
+
+109
+00:06:31.300 --> 00:06:35.210
+So for
+example we can take the mean of X + W and
+
+110
+00:06:35.210 --> 00:06:39.180
+we can do it grouped by a variable A.
+
+111
+00:06:39.180 --> 00:06:44.100
+And so what that's gonna do is it's gonna
+take the mean of X plus W when A is equal
+
+112
+00:06:44.100 --> 00:06:50.070
+to true, and it's gonna place that mean
+in all the rows where A is equal to true.
+
+113
+00:06:51.110 --> 00:06:54.990
+Then it's gonna take the mean of X
+plus W where A is equal to false.
+
+114
+00:06:54.990 --> 00:06:59.620
+And place that mean in all the rows
+where A is equal to false.
+
+115
+00:06:59.620 --> 00:07:03.230
+So it creates a new variable that's
+equal to the aggregated mean,
+
+116
+00:07:03.230 --> 00:07:06.580
+aggregated over the variable
+that you used by 4.
+
+117
+00:07:06.580 --> 00:07:08.790
+There's some special variables and
+
+118
+00:07:08.790 --> 00:07:11.800
+data table that allow you to
+do something's really fast.
+
+119
+00:07:11.800 --> 00:07:15.440
+So one is a .N is
+an integer linked one and
+
+120
+00:07:15.440 --> 00:07:19.160
+it's a containment number of times that
+a particular group appears and so for
+
+121
+00:07:19.160 --> 00:07:24.270
+example if I created data
+table that has a large
+
+122
+00:07:24.270 --> 00:07:29.120
+number of As, Bs, and Cs in it,
+so about 100,000 A B and Cs.
+
+123
+00:07:29.120 --> 00:07:33.620
+Then what I can do is,
+if I want to count the number
+
+124
+00:07:33.620 --> 00:07:38.610
+of times each of those letters
+appear I can use data table,
+
+125
+00:07:38.610 --> 00:07:43.700
+dot N, and then grouped by the X variable.
+
+126
+00:07:43.700 --> 00:07:46.120
+And then what that will
+do is it will count,
+
+127
+00:07:46.120 --> 00:07:51.520
+dot N is just count the number of
+times grouped by the X variable.
+
+128
+00:07:52.590 --> 00:07:56.460
+It does that very fast as opposed
+to the equivalent operation,
+
+129
+00:07:56.460 --> 00:08:00.190
+which is just doing that
+table of DT dollar sign X.
+
+130
+00:08:00.190 --> 00:08:04.240
+A unique aspect of data tables
+is that they have keys,
+
+131
+00:08:04.240 --> 00:08:07.620
+so if you set the key,
+it's possible to subset and
+
+132
+00:08:07.620 --> 00:08:11.880
+sort a data table much more rapidly than
+you would be able to do with a data frame.
+
+133
+00:08:11.880 --> 00:08:16.350
+Here, I'm going to create a data table,
+and it's going to have a variable X.
+
+134
+00:08:16.350 --> 00:08:19.680
+And it's gonna have a variable Y and
+I'm gonna set the key for
+
+135
+00:08:19.680 --> 00:08:22.590
+the data table to be the variable X.
+
+136
+00:08:22.590 --> 00:08:27.790
+Then if I want a subset on
+the basis of x or if I put in
+
+137
+00:08:27.790 --> 00:08:32.200
+quoted a here, it knows to go and
+look in the key, and the key is x, and
+
+138
+00:08:32.200 --> 00:08:36.750
+it very quickly subsets the data to only
+the values of x that are equal to a.
+
+139
+00:08:38.710 --> 00:08:43.030
+You can also use keys to facilitate
+joints between data tables so for
+
+140
+00:08:43.030 --> 00:08:51.400
+example here I've created two data
+tables where they have a variable X and
+
+141
+00:08:51.400 --> 00:08:56.260
+a variable Y and in this case
+the second data table has a variable Z.
+
+142
+00:08:57.570 --> 00:09:00.860
+And so I can set the key in
+both cases to be equal to x, so
+
+143
+00:09:00.860 --> 00:09:03.810
+the same key for both data tables.
+
+144
+00:09:03.810 --> 00:09:05.720
+And then I can merge them together.
+
+145
+00:09:05.720 --> 00:09:09.130
+This is actually quite a bit faster
+than merging with the data frame
+
+146
+00:09:09.130 --> 00:09:12.670
+as long as you have the same key for
+both data tables.
+
+147
+00:09:12.670 --> 00:09:14.570
+It can be very fast.
+
+148
+00:09:17.250 --> 00:09:21.230
+It can also be advantageous to use data
+tables if you want to be able to read
+
+149
+00:09:21.230 --> 00:09:22.970
+things fast from the disk.
+
+150
+00:09:22.970 --> 00:09:25.870
+So here I've created a big data frames.
+
+151
+00:09:25.870 --> 00:09:29.770
+So it's a data frame with two
+very large variables in it.
+
+152
+00:09:29.770 --> 00:09:33.300
+And then I set up a temporary file
+with this command right here.
+
+153
+00:09:33.300 --> 00:09:38.080
+And I write our big data
+frame apps that file.
+
+154
+00:09:38.080 --> 00:09:42.930
+Then I'm going to time how long it takes
+to read it in using the fread command.
+
+155
+00:09:42.930 --> 00:09:47.057
+The fread command could be
+applied to reading data tables,
+
+156
+00:09:47.057 --> 00:09:53.440
+just like basically a drop-in substitute
+for read.table tab separated files.
+
+157
+00:09:53.440 --> 00:09:56.790
+And so
+you can see it takes about .32 seconds.
+
+158
+00:09:57.880 --> 00:10:01.860
+If I tried to do that same operation, if I
+just tried to read that table that file,
+
+159
+00:10:01.860 --> 00:10:04.420
+it would come in quite a bit slower,
+
+160
+00:10:04.420 --> 00:10:07.510
+well a little more than ten times
+slower to be able to read that file in.
+
+161
+00:10:07.510 --> 00:10:12.050
+So it's actually much faster to read
+files with data, data.table as well.
+
+162
+00:10:14.010 --> 00:10:16.560
+To summarize data table
+can be both faster and
+
+163
+00:10:16.560 --> 00:10:18.420
+more memory efficient than data frames.
+
+164
+00:10:18.420 --> 00:10:21.260
+Although it requires you to learn
+a little bit of use syntax, and
+
+165
+00:10:21.260 --> 00:10:25.480
+sometimes to be a little bit careful
+in terms of copying over data tables.
+
+166
+00:10:25.480 --> 00:10:30.030
+The latest developments can be found on
+the development version of the package.
+
+167
+00:10:30.030 --> 00:10:32.740
+Which can be found at
+this website right here.
+
+168
+00:10:32.740 --> 00:10:35.930
+They've already started to develop
+a melt like operations and
+
+169
+00:10:35.930 --> 00:10:40.010
+decast like operations for
+data tables and they're gonna continually
+
+170
+00:10:40.010 --> 00:10:44.380
+update that packages it's a very
+rapidly developing package.
+
+171
+00:10:44.380 --> 00:10:49.260
+And then this website here is very nice
+cause it gives you comprehensive-ish
+
+172
+00:10:49.260 --> 00:10:53.770
+list of all the differences between
+data.table and data frames.
+
+173
+00:10:53.770 --> 00:10:56.810
+And so, that would be very useful
+if you're transitioning from
+
+174
+00:10:56.810 --> 00:10:58.530
+using data frames to using data table.
+
+175
+00:10:59.620 --> 00:11:04.310
+The notes that I've used today are very
+largely based on the notes that
+
+176
+00:11:04.310 --> 00:11:09.730
+Raphael Gottardo has put up here on
+GitHub, and they were originally from
+
+177
+00:11:09.730 --> 00:11:13.130
+Kevin Ushey, and I think that
+both of them deserve credit for
+
+178
+00:11:13.130 --> 00:11:16.990
+the excellent notes that I've largely
+copied here for this lecture.

@@ -1,0 +1,58 @@
+Some data scientists show a certain
+snobbery about Excel files. But Excel files are still probably the
+most widely used format for sharing data. I think the reason is because a lot of
+people are used to using spreadsheets, so whether you're working in business
+applications or in science, people know how to use spreadsheets to collect, and
+put data in, and share it with each other. It's true now, even more than ever,
+with things like Google spreadsheets, which allow people to share them
+collaboratively on the internet. The problem for you is that when
+you're analyzing data with a scripting language like R you need to be able to
+extract the data out of those files so that you can do downstream analyses and
+processing on them. So we're gonna go back to
+the Baltimore camera data. I guess I must be getting a lot of
+speeding tickets lately cuz I've been thinking about this data set a lot. And so now we're gonna actually download
+the Excel version of this data set. And so in this case the URL
+is a little bit different. Again you just pick
+the URL off the website. And then what we're gonna do is we're
+going to actually download the file as a .xlsx file because that's
+the extension for Excel files. And so now we've downloaded this file. We began to use download file which
+remember is agnostic to the file type so it just downloads the file and puts it into this file name
+that you've stated here. And again we're gonna collect information
+on when the file was downloaded so that we can know when
+the analysis was performed. So the R library that is useful for
+this is the xlsx package. There's other packages, XLConnect that
+can also can be use if you would like to. They might provide a little bit more
+flexible interface but I like xlsx. So what we do is we actually
+use the command read.xlsx and we assign it again to
+the cameraData variable. And now we need to pass
+a couple of parameters so we need to pass the sheetIndex. So we need to say which
+sheet is the data stored on. And again we're gonna tell it
+that there's a header line so that the column names are labeled. And so when we load that into R again it
+looks almost exactly like the data that you got when you read the CSV file and
+you read it straight out of an Excel file. One thing to keep in mind is that you can
+read specific rows and specific columns. So for example, if you wanna read
+just the second and third columns and you wanna read just the first through
+fourth rows, you can actually pass those as variables to colIndex and
+rowIndex to this file read.xlsx. And you'll actually only read a subset
+of the Excel file which might be useful if you only wanna abstract
+a little part of the file that you have. So some further notes that might be useful
+for you are that you can use write.xlsx. So if you're working with
+people that like Excel files, you can actually write them
+back out after your analysis. Share them with people. It's very similar and you pass it
+the object that you want to write out and the file name and
+it will write that file out. read.xlsx2 I found is quite
+a bit faster than read.xlsx. But especially if you're
+reading subsets of rows, it might be a little bit unstable
+at least in my experience. XLConnect, as I mentioned, is a lot
+more flexible for reading, writing and manipulating Excel files. And so if you really need to do a lot
+of serious processing of Excel files, I've found that XLConnect
+might be a little bit better. If you're gonna be doing that, the XL Connect vignette is actually
+a really great place to start. It has lot of information about how you
+can do all sorts of different things. How you can manipulate and
+create files directly from R. In general, and for
+the purposes of this class but also the purposes of most analyses
+it's a little bit faster and easier to read files if you store them as comma
+separated, or tab separated flat files. They're also a little bit easier to
+distribute, as not everybody has Excel. It's not necessarily as
+cross-platform as using something like a plain text file, with just comma
+separated or tab separated values.

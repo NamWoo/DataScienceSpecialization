@@ -1,0 +1,191 @@
+This lecture is about reading XML. So if you don't know about XML, it's Extensible Markup Language, is what it
+stands for. So it's frequently used to score
+structured data. It's particularly widely used in internet
+applications. So you'll see it a lot when you're doing things like web scraping or trying to get
+data from an internet API or trying to download data
+from say, open data of websites, say like an open
+government website. So, extracting HTML, XML is actually the
+basis for most of the web-scraping that you'll
+see. There are two components to an XML file. There's the markup. That's the labels that give the text
+structure. So you can imagine if you just started
+typing, you would end up with sort of an unstructured
+text file. The markup is the way that you add labels
+so that the file ends being structured. And then the content is the actual text
+that you type in, in between sort of the labels that give
+the structure to the text. So to be a little bit more concrete, we'll
+talk about tags, elements and attributes. So tags correspond to the labels, that
+there are labels that are going to be applying to particular parts of the
+text so that it will be structured. So, there are start tags. And so, start tags look like this. So, they start with an open caret on one
+side and then they have a, a phrase and then a closed caret
+on the other side. So, you'll have that at the beginning of a
+certain part of the text. So, that will start them, that text as a,
+a labelled section called section. And then it ends with an end tag which
+looks like this. It has the same phrase as before, but it starts with a forward slash inside of the
+two carets. And so the empty tags are tags that correspond to lines where you don't
+necessarily need both an open and then a close tag to
+deliminate a certain part of a text. You might just want to denote one specific
+line, say, as a line break. And so what you do is, you have the same
+sort of structure. Only you have the forward slash just over
+here at the right end. So elements are specific examples of tags. So, for example, one element of the XML markup could be, the tag greeting, with
+the end tag greeting over here on the right hand
+side and in between it the content, the hello
+world. So, attributes are components of the
+label. So, you can actually add to the tags
+components. And so, for example, you might have an
+image tag. So, what you might want to have
+corresponding to that image is an attribute that's the
+source. That's where the image is actually coming
+from. And then an alternate phrase for that tag,
+and that could be instructor, for example. So another example here is suppose you
+have a tag that's a step tag, and you might have multiple
+steps, so tag number step number one might be tagged
+with number equal 1 and then two and then this is number three
+step three. And then it needs to end with an end tag
+just like it did before. If you want to know a lot more about XML
+and it's probably Probably a good idea before
+doing a whole bunch more with this lecture, if you could go
+and see, the Wikepedia entry on XML, which is actually
+quite comprehensive and nice. So this is an example XML file. It's a little bit hard to see, but you can
+see it okay if you go actually to the web link here at
+the bottom of the page. And so the idea here is you have a text
+file, and that text file has lots of tags and
+content in it. So for example here you have a tag that
+says food and then here is a close tag for that tag that says
+food down here. So you can see they're indented at the
+same level within this file. And then for this particular food element
+you actually have a name, so there's the open tag for name and there's the
+close tag for name, and this particular. Element is named sort of Belgian Waffle,
+delicious. And then there's other tags that
+correspond to other components of this particular
+food element. And then you go down and there's another food elements with another names and so
+forth. So that's what an xml file look at. It looks like and I encourage you to go
+look the the bigger version of that when you go to
+that web link. So you can read the file into R, you can
+do this with the XML package so we're loading the
+XML package all caps XML. And then you give it the url. So in this case, we're going to give it
+the url from the previous XML file we were looking at
+on that previous screen. And then we can use the function XML three
+parts to parse out that XML file. So what this does is. It loads the document into a memory, into
+a R memory in a way that you can then parse it and get access
+to different parts of it. So, within R, it's still a structured
+object, so we have to be able to use different functions to
+access different parts of that object. So, the first thing that we want to look
+at is the root node. So, the root node you can get with XML
+root. And so what that is, is it's sort of the
+wrapper, you can think of it as the wrapper for the
+entire document. And so if you execute this xml root
+command, you'll have access to that particular element to
+that xml file. And then if you want to get the name out,
+you can actually use the xmlname applied to that node to get the name out,
+in this case, it's the breakfast menu. You can also look at the names of the root
+node. And so, when you do names of the root node
+what it's actually telling you is what all the nested
+elements within that root node are. So, the root node wraps the whole document and the whole document is a breakfast
+menu. And then there are five different
+breakfast items on this menu, and each one is wrapped within a
+food element. So, you get five food elements, if you
+look at names of the root node. So, the next thing that you could use is actually directly access parts of the XML
+document. And you can do it in a little bit in the
+same that way you access a list in R. And so, for example, if you want to look
+at. You, you have this root node element that
+we've extracted. And we can look at the first component of
+that or the first element of that and we do it by
+using double brackets here. That's how you access the first element,
+say in a list. And so, what you get out, actually, is the
+first food element, like this. So it contains the food tags, and it also contains all the information about the
+first food element. Then, if you want to keep drilling down
+into smaller and smaller parts of the XML document, you can do sub-setting,
+just like you do with lists. So first, this exit rootNode and the first
+bracket one, will again give you this. Element here with the entire food
+component and then if you want to take the first element of that,
+you'll just repeat the process again and then you'll be looking
+at just the name the belgian waffles because that's the first subcomponent of the first
+subcomponent. You can actually programmatically extract
+different parts of the file. So you can do that with the XML Xsupply
+command, and so what you do is you pass that a parsed XML object and then you tell it
+what function you like to apply; so in this case XML
+value. So what that's going to do is, it's
+going to loop through all of the elements of the root node and get the XML value And by default this is going to do this
+recursively. So, if you apply it in this way, since rootNode contains the entire
+document, it's going to go through and get every single value of every sing tagged element in the entire
+document. And so you just get a bunch of text all strung together that's all the text that
+was in that document. You might be a little bit more specific and get a specific component of the
+document. And you can do that using the XPath
+language, so this a whole other language that you have to learn in addition to XML
+to be able to access the data. But if you learn just a few of the components then you'll be a long way along
+the way. I'm going to talk a little bit about this,
+but there's actually really nice set of
+lecture notes that are available here that go into this in a
+little bit more depth, if you find yourself a
+little bit. Lost after this lecture. So the first thing that you're going to be
+looking at is the top level node of each element, and that you
+get with a forward slash node. The node at any level is double slash
+node. And then you can actually extract specific
+nodes with specific attributes. And we'll talk about how to do that in the
+next couple of slides. [SOUND] So the first thing that you're
+going to want to be able to do is get the items on the menu and their prices
+and so the way that we're going to do that is we're again going to use this xpathSApply but now
+we're going to be a little bit more targeted about which data we're going to be
+extracting. So we're giving you, again, [INAUDIBLE]
+the rootNode. That's the entire document, and so then
+what we're going to be doing is we're going to be using This xpack
+element here is //name. And so, what that's going to do is it's going to go through and get all of the
+nodes that correspond to an element with title
+name and then it's going to get the xmlvalue of
+those nodes. So, what it's going to do is it's going to
+take out basically all of the elements of that
+XML file that are tagged with name and so you can see,
+you end up with the names of all of the items on
+the menu. You can also do the same thing. You send the exact same rootNode to
+xpathSApply, only now you can say I actually just want the nodes
+that correspond to price. And again I want their xmlValue. And so it will plot out the xmel values
+which the prices of the values and now we extract from that xmel file the names
+of the menu items as well as their prices. To give you an example of, it's a little more complicated I am actually
+going to use a website of the Baltimore Ravens which is
+an American football team that is based here
+on Baltimore. So, this the homepage of that team on
+ESPN. Which is a sports channel in the U.S. and
+so what we're going to do is actually look at
+the source code. So, if you right click on the page and say
+view source what you'll see is a source
+document that looks like this. It's actually quite complicated. That's the source code that actually demonstrates, that's process to show you
+the website that you actually see when you go
+navigate your browser to that website. So we're going to actually drill into this
+website source code and see if we can extract some
+information. So again I'm going to pass the file URL. This is the URL of that website, if you go
+back to the previous page. So now, since I'm parsing an HTML file,
+instead of an XML file, I'm going to use HTML tree parse
+instead of XML tree parse. Um,the difference is our, it's different
+enough you want to use HTML tree parse when you're parsing an
+HTML file. And then I'm going to pass the command use
+internal equals true, so that I can get all the different nodes
+inside of that, that file. So now what I'm going to do is, I'm again
+going to use the xpathSApply to programatically
+extract some components of this document. So I'm going to start with the whole
+document again. And now what I'm going to try to do is,
+I'm going to again extract the XML value to the value
+inside of certain elements. But I want to find very specific kinds of
+elements. So here's what I'm going to do. I'm going to look for elements. That are list items li, and that have a
+particular class. So they have class equal to score. And so, what this is going to do is it's going to go through the entire document,
+and any time it sees a tag that is a, a list item, it's going to check and see if it's class
+is score. And if it's class is score it'll return
+the XML value. So it turns out if you go back to this
+website and you look very very carefully, That you can see for example
+there are these list items and the class in this class is equal to the
+team name and so the next element that I'm going to be
+extracting on this page is actually the team name. So it's the same thing. I look for a list item with class equal to team name and it will extract those
+team names. So the way this works is you go to the
+website and you find the tag and any attributes that
+you want to extract, and then you need to write them into this
+xpath language to extract only the data for those specific
+elements with xpath, as applied. So, if I do this, I end up with the scores
+for each of the games and the teams. So, I've scraped from that website
+information directly using This is a very brief introduction to XML. The xml packaging r and xml in general. If you go and check out the xml tutorials
+for the xml package there's a short one that's
+really good and a long one that's extremely extensive and should
+only be read after reading the short one so you get an idea of what is
+going on. And then there's really outstanding guide
+to the XML package that's linked to here as well that
+will give you a lot of information about how
+you can use XML to programatically extract
+information from websites.

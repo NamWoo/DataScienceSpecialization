@@ -1,0 +1,318 @@
+WEBVTT
+
+1
+00:00:00.570 --> 00:00:03.110
+Some data scientists show a certain
+snobbery about Excel files.
+
+2
+00:00:03.110 --> 00:00:07.860
+But Excel files are still probably the
+most widely used format for sharing data.
+
+3
+00:00:07.860 --> 00:00:11.150
+I think the reason is because a lot of
+people are used to using spreadsheets,
+
+4
+00:00:11.150 --> 00:00:15.000
+so whether you're working in business
+applications or in science, people know
+
+5
+00:00:15.000 --> 00:00:18.860
+how to use spreadsheets to collect, and
+put data in, and share it with each other.
+
+6
+00:00:18.860 --> 00:00:22.000
+It's true now, even more than ever,
+with things like Google spreadsheets,
+
+7
+00:00:22.000 --> 00:00:24.160
+which allow people to share them
+collaboratively on the internet.
+
+8
+00:00:25.390 --> 00:00:28.050
+The problem for you is that when
+you're analyzing data with a scripting
+
+9
+00:00:28.050 --> 00:00:31.390
+language like R you need to be able to
+extract the data out of those files so
+
+10
+00:00:31.390 --> 00:00:34.040
+that you can do downstream analyses and
+processing on them.
+
+11
+00:00:34.040 --> 00:00:37.370
+So we're gonna go back to
+the Baltimore camera data.
+
+12
+00:00:37.370 --> 00:00:40.030
+I guess I must be getting a lot of
+speeding tickets lately cuz I've been
+
+13
+00:00:40.030 --> 00:00:42.420
+thinking about this data set a lot.
+
+14
+00:00:42.420 --> 00:00:47.260
+And so now we're gonna actually download
+the Excel version of this data set.
+
+15
+00:00:47.260 --> 00:00:51.300
+And so in this case the URL
+is a little bit different.
+
+16
+00:00:51.300 --> 00:00:54.650
+Again you just pick
+the URL off the website.
+
+17
+00:00:54.650 --> 00:00:58.580
+And then what we're gonna do is we're
+going to actually download the file as
+
+18
+00:00:58.580 --> 00:01:03.590
+a .xlsx file because that's
+the extension for Excel files.
+
+19
+00:01:03.590 --> 00:01:05.280
+And so now we've downloaded this file.
+
+20
+00:01:05.280 --> 00:01:09.250
+We began to use download file which
+remember is agnostic to the file type so
+
+21
+00:01:09.250 --> 00:01:10.770
+it just downloads the file and
+
+22
+00:01:10.770 --> 00:01:13.270
+puts it into this file name
+that you've stated here.
+
+23
+00:01:13.270 --> 00:01:16.900
+And again we're gonna collect information
+on when the file was downloaded so
+
+24
+00:01:16.900 --> 00:01:19.660
+that we can know when
+the analysis was performed.
+
+25
+00:01:21.215 --> 00:01:26.290
+So the R library that is useful for
+this is the xlsx package.
+
+26
+00:01:26.290 --> 00:01:31.942
+There's other packages, XLConnect that
+can also can be use if you would like to.
+
+27
+00:01:31.942 --> 00:01:36.830
+They might provide a little bit more
+flexible interface but I like xlsx.
+
+28
+00:01:36.830 --> 00:01:40.666
+So what we do is we actually
+use the command read.xlsx and
+
+29
+00:01:40.666 --> 00:01:43.050
+we assign it again to
+the cameraData variable.
+
+30
+00:01:44.220 --> 00:01:46.700
+And now we need to pass
+a couple of parameters so
+
+31
+00:01:46.700 --> 00:01:48.250
+we need to pass the sheetIndex.
+
+32
+00:01:48.250 --> 00:01:50.580
+So we need to say which
+sheet is the data stored on.
+
+33
+00:01:50.580 --> 00:01:53.320
+And again we're gonna tell it
+that there's a header line so
+
+34
+00:01:53.320 --> 00:01:56.310
+that the column names are labeled.
+
+35
+00:01:56.310 --> 00:01:59.530
+And so when we load that into R again it
+looks almost exactly like the data that
+
+36
+00:01:59.530 --> 00:02:03.470
+you got when you read the CSV file and
+you read it straight out of an Excel file.
+
+37
+00:02:04.760 --> 00:02:10.680
+One thing to keep in mind is that you can
+read specific rows and specific columns.
+
+38
+00:02:10.680 --> 00:02:14.780
+So for example, if you wanna read
+just the second and third columns and
+
+39
+00:02:14.780 --> 00:02:18.800
+you wanna read just the first through
+fourth rows, you can actually pass those
+
+40
+00:02:18.800 --> 00:02:24.540
+as variables to colIndex and
+rowIndex to this file read.xlsx.
+
+41
+00:02:24.540 --> 00:02:27.490
+And you'll actually only read a subset
+of the Excel file which might be
+
+42
+00:02:27.490 --> 00:02:32.270
+useful if you only wanna abstract
+a little part of the file that you have.
+
+43
+00:02:32.270 --> 00:02:37.040
+So some further notes that might be useful
+for you are that you can use write.xlsx.
+
+44
+00:02:37.040 --> 00:02:39.180
+So if you're working with
+people that like Excel files,
+
+45
+00:02:39.180 --> 00:02:41.740
+you can actually write them
+back out after your analysis.
+
+46
+00:02:41.740 --> 00:02:43.530
+Share them with people.
+
+47
+00:02:43.530 --> 00:02:47.314
+It's very similar and you pass it
+the object that you want to write out and
+
+48
+00:02:47.314 --> 00:02:49.687
+the file name and
+it will write that file out.
+
+49
+00:02:49.687 --> 00:02:55.630
+read.xlsx2 I found is quite
+a bit faster than read.xlsx.
+
+50
+00:02:55.630 --> 00:02:58.510
+But especially if you're
+reading subsets of rows,
+
+51
+00:02:58.510 --> 00:03:02.030
+it might be a little bit unstable
+at least in my experience.
+
+52
+00:03:02.030 --> 00:03:05.690
+XLConnect, as I mentioned, is a lot
+more flexible for reading, writing and
+
+53
+00:03:05.690 --> 00:03:07.040
+manipulating Excel files.
+
+54
+00:03:07.040 --> 00:03:10.520
+And so if you really need to do a lot
+of serious processing of Excel files,
+
+55
+00:03:10.520 --> 00:03:13.248
+I've found that XLConnect
+might be a little bit better.
+
+56
+00:03:13.248 --> 00:03:14.530
+If you're gonna be doing that,
+
+57
+00:03:14.530 --> 00:03:17.900
+the XL Connect vignette is actually
+a really great place to start.
+
+58
+00:03:17.900 --> 00:03:20.830
+It has lot of information about how you
+can do all sorts of different things.
+
+59
+00:03:20.830 --> 00:03:25.780
+How you can manipulate and
+create files directly from R.
+
+60
+00:03:25.780 --> 00:03:27.930
+In general, and for
+the purposes of this class but
+
+61
+00:03:27.930 --> 00:03:32.010
+also the purposes of most analyses
+it's a little bit faster and easier to
+
+62
+00:03:32.010 --> 00:03:35.810
+read files if you store them as comma
+separated, or tab separated flat files.
+
+63
+00:03:35.810 --> 00:03:39.850
+They're also a little bit easier to
+distribute, as not everybody has Excel.
+
+64
+00:03:39.850 --> 00:03:45.040
+It's not necessarily as
+cross-platform as using something
+
+65
+00:03:45.040 --> 00:03:49.540
+like a plain text file, with just comma
+separated or tab separated values.
