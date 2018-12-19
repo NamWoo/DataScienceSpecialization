@@ -1,0 +1,890 @@
+WEBVTT
+
+1
+00:00:00.510 --> 00:00:02.990
+In the last lecture, we talked about raw
+data, where you're starting
+
+2
+00:00:02.990 --> 00:00:06.480
+from, the messy file that you're trying to
+extract some data from.
+
+3
+00:00:06.480 --> 00:00:08.840
+In this lecture, we're going to be talking
+about tidy data.
+
+4
+00:00:08.840 --> 00:00:10.820
+This is sort of the target, where you're
+going to take the
+
+5
+00:00:10.820 --> 00:00:13.710
+raw data and turn it into a tidy data set,
+which you
+
+6
+00:00:13.710 --> 00:00:16.400
+can then use to do downstream analysis
+that you might learn about
+
+7
+00:00:16.400 --> 00:00:20.370
+in a regression modeling class or in the
+prediction end machine learning class.
+
+8
+00:00:21.888 --> 00:00:24.488
+So the four things that you should have
+when you finish going
+
+9
+00:00:24.488 --> 00:00:27.098
+from a raw data set, to a tidy data set,
+are the following.
+
+10
+00:00:27.098 --> 00:00:29.078
+So you should have the raw data, obviously
+
+11
+00:00:29.078 --> 00:00:32.297
+that's the files that you actually
+extracting information from.
+
+12
+00:00:32.297 --> 00:00:36.344
+You should have a tidy data set, and we're
+going to be talking about in a minute, and
+
+13
+00:00:36.344 --> 00:00:38.624
+then you should have a code book
+describing each
+
+14
+00:00:38.624 --> 00:00:41.520
+variable, and it's value in the tidy data
+set.
+
+15
+00:00:41.520 --> 00:00:43.601
+This code book is often called the meta
+data.
+
+16
+00:00:43.601 --> 00:00:46.253
+So it's the data that surrounds the data,
+so-to-speak,
+
+17
+00:00:46.253 --> 00:00:48.740
+and explains what the data is trying to
+say.
+
+18
+00:00:48.740 --> 00:00:53.350
+You might manage each column in your tidy
+data set corresponds to one variable, and
+
+19
+00:00:53.350 --> 00:00:56.920
+you might want to describe things like the
+units of those variables in the code book.
+
+20
+00:00:58.320 --> 00:01:00.250
+And the critical part that sometimes is
+missing, but
+
+21
+00:01:00.250 --> 00:01:02.560
+we're going to learn a lot about in this
+class,
+
+22
+00:01:02.560 --> 00:01:05.030
+is an explicit and exact recipe that you
+use
+
+23
+00:01:05.030 --> 00:01:07.100
+to go from steps one to steps two and
+three.
+
+24
+00:01:07.100 --> 00:01:10.685
+In other words, you need to report the
+exact steps that you
+
+25
+00:01:10.685 --> 00:01:13.590
+did, took to get from the raw data to the
+processed data.
+
+26
+00:01:13.590 --> 00:01:16.530
+You can do that in a variety of different
+ways, but for the purposes of
+
+27
+00:01:16.530 --> 00:01:19.120
+this class, we'll be putting together our
+scripts
+
+28
+00:01:19.120 --> 00:01:21.650
+that then you could use to process data.
+
+29
+00:01:21.650 --> 00:01:24.820
+And those will be the sort of recipe that
+you can hand off
+
+30
+00:01:24.820 --> 00:01:27.340
+and say this is how I got from the raw to
+the tidy data.
+
+31
+00:01:28.960 --> 00:01:32.520
+So the raw data it's important to remember
+that there are different
+
+32
+00:01:32.520 --> 00:01:37.020
+levels of raw data, as we talked about it
+the previous lecture, but
+
+33
+00:01:37.020 --> 00:01:40.250
+for the purposes of your looking a
+particular data set the raw
+
+34
+00:01:40.250 --> 00:01:44.360
+data are the rawest form of the data that
+you had access to.
+
+35
+00:01:44.360 --> 00:01:45.810
+So for example, it might be a strange
+
+36
+00:01:45.810 --> 00:01:49.120
+binary file that whatever your measuring
+spits out.
+
+37
+00:01:49.120 --> 00:01:52.390
+It could be an unformatted Excel file with
+ten worksheets that
+
+38
+00:01:52.390 --> 00:01:56.060
+some company you contracted with sent you,
+or it could be
+
+39
+00:01:56.060 --> 00:01:59.020
+something that was handed to you as an
+Excel file, or
+
+40
+00:01:59.020 --> 00:02:03.110
+it could be complicated JSON data you get
+from scraping an API.
+
+41
+00:02:03.110 --> 00:02:05.580
+Or, it can even be something like handed
+your numbers you got from
+
+42
+00:02:05.580 --> 00:02:08.330
+looking through a microscope and counting
+cells
+
+43
+00:02:08.330 --> 00:02:09.690
+that appeared in that, in the window.
+
+44
+00:02:11.090 --> 00:02:13.230
+You know the raw data is in the right
+format if, and
+
+45
+00:02:13.230 --> 00:02:15.890
+this is a critical one, you ran no
+software on the data.
+
+46
+00:02:15.890 --> 00:02:18.930
+So, someone else might of run some
+software on the data, but by
+
+47
+00:02:18.930 --> 00:02:22.890
+the time it handed to you, there was
+absolutely no software that was run.
+
+48
+00:02:22.890 --> 00:02:25.090
+And, you didn't manipulate any of your
+numbers in the data
+
+49
+00:02:25.090 --> 00:02:28.150
+set or move any of the data from the data
+set.
+
+50
+00:02:28.150 --> 00:02:31.120
+And you didn't do any summarization to the
+data in any way.
+
+51
+00:02:31.120 --> 00:02:34.200
+So this is how you know that the data is
+in its rawest form.
+
+52
+00:02:34.200 --> 00:02:35.710
+And it's one component of the data that
+
+53
+00:02:35.710 --> 00:02:38.240
+you should have, sort of the
+unadulterated, raw
+
+54
+00:02:38.240 --> 00:02:40.510
+data, should be one component of, the
+having
+
+55
+00:02:40.510 --> 00:02:43.480
+a tidy data set handed over to a
+collaborator.
+
+56
+00:02:45.000 --> 00:02:48.050
+The tidy data is, on the other hand, the
+
+57
+00:02:48.050 --> 00:02:50.650
+target or the end goal of the whole
+process,
+
+58
+00:02:50.650 --> 00:02:52.980
+and so the idea is you, you should have
+
+59
+00:02:52.980 --> 00:02:56.680
+each variable that you've measured be in
+exactly one column.
+
+60
+00:02:56.680 --> 00:02:59.660
+So there should be one variable per
+column, and
+
+61
+00:02:59.660 --> 00:03:01.980
+each different observation should be in a
+different row.
+
+62
+00:03:01.980 --> 00:03:04.780
+In other words, if you've measured a
+particular
+
+63
+00:03:04.780 --> 00:03:06.840
+variable on a large number of people who
+
+64
+00:03:06.840 --> 00:03:08.520
+have been tweeting, say you measure the
+number
+
+65
+00:03:08.520 --> 00:03:13.370
+of tweets that were posted by a large
+number
+
+66
+00:03:13.370 --> 00:03:17.800
+of users, then, what you would get is the
+number of tweets in the column and then,
+
+67
+00:03:17.800 --> 00:03:19.730
+for every single user, you would get the
+
+68
+00:03:19.730 --> 00:03:22.430
+number of tweets in that, in a different
+row.
+
+69
+00:03:22.430 --> 00:03:25.200
+There should be one table for every kind
+of variable.
+
+70
+00:03:25.200 --> 00:03:28.590
+So, for example, if you collect data from
+Twitter and Facebook,
+
+71
+00:03:28.590 --> 00:03:31.740
+and so forth, you might have one table for
+each of those.
+
+72
+00:03:31.740 --> 00:03:34.590
+If you have multiple tables you should
+definitely
+
+73
+00:03:34.590 --> 00:03:36.380
+make sure, if you're trying to match them
+
+74
+00:03:36.380 --> 00:03:38.280
+up, that they include a column in the
+
+75
+00:03:38.280 --> 00:03:40.420
+table that allows them to be linked
+together.
+
+76
+00:03:40.420 --> 00:03:42.160
+So this is often an id, and we'll talk a
+
+77
+00:03:42.160 --> 00:03:44.200
+little bit about merging data sets later
+in the class.
+
+78
+00:03:45.600 --> 00:03:48.360
+A couple of other important tips that I've
+found have saved me
+
+79
+00:03:48.360 --> 00:03:50.620
+a lot of trouble in the past is, if you
+include a row
+
+80
+00:03:50.620 --> 00:03:54.140
+at the top of each file of variable names,
+sometimes this won't always
+
+81
+00:03:54.140 --> 00:03:57.740
+appear in a tidy data-set, but it's much
+more useful if they are.
+
+82
+00:03:57.740 --> 00:04:00.630
+It's also much more useful if the variable
+names are human readable.
+
+83
+00:04:00.630 --> 00:04:02.200
+So for example, if you use something
+
+84
+00:04:02.200 --> 00:04:05.650
+like AgeAtDiagnosis for a column name as
+opposed
+
+85
+00:04:05.650 --> 00:04:10.140
+to AgeDx, which might be a little bit more
+confusing and harder for people to read.
+
+86
+00:04:10.140 --> 00:04:12.790
+So its better be a little error on the
+side of being more
+
+87
+00:04:12.790 --> 00:04:17.590
+explicit, and then in genera,l data should
+be saved in one file per table.
+
+88
+00:04:17.590 --> 00:04:24.870
+So its a habit of some people to save data
+in multiple Excel spread sheets within a
+
+89
+00:04:24.870 --> 00:04:28.590
+single Excel file, and so its a better
+idea
+
+90
+00:04:28.590 --> 00:04:31.092
+to save each spread sheet in a different
+file.
+
+91
+00:04:31.092 --> 00:04:32.536
+So we'll talk about that in the class.
+
+92
+00:04:32.536 --> 00:04:37.810
+The next component is often a piece that
+is missing, which is the codebook.
+
+93
+00:04:37.810 --> 00:04:42.970
+So you have this tidy data set that's very
+nice and clean and neat and you
+
+94
+00:04:42.970 --> 00:04:47.380
+got that data set by doing a whole bunch
+of things to a broad data set.
+
+95
+00:04:47.380 --> 00:04:49.660
+And so at the end of the day you end up
+
+96
+00:04:49.660 --> 00:04:54.090
+with a data set that constitutes
+information about a bunch of
+
+97
+00:04:54.090 --> 00:04:57.860
+different variables, and you might end up
+with just the variable
+
+98
+00:04:57.860 --> 00:05:00.800
+names at the top of that file telling you
+what happened.
+
+99
+00:05:00.800 --> 00:05:02.910
+But you might want to have more
+information about the variables.
+
+100
+00:05:02.910 --> 00:05:06.010
+So one common example is, you might want
+to know the units.
+
+101
+00:05:06.010 --> 00:05:11.480
+So the column header might be the amount
+of money that we made this quarter, and
+
+102
+00:05:11.480 --> 00:05:12.610
+you'd really want to know if that was
+
+103
+00:05:12.610 --> 00:05:15.200
+in units or thousands or millions or so
+forth.
+
+104
+00:05:16.594 --> 00:05:17.660
+You might also want to know some
+
+105
+00:05:17.660 --> 00:05:19.970
+information about the summary choices that
+was made.
+
+106
+00:05:19.970 --> 00:05:24.060
+So, it might be the variable measures
+something about the monthly revenue.
+
+107
+00:05:24.060 --> 00:05:27.769
+And so you want to know whether the median
+or mean revenue was taken.
+
+108
+00:05:29.020 --> 00:05:33.410
+And then information about the
+experimental study design that you used.
+
+109
+00:05:33.410 --> 00:05:35.850
+So you might want to know something about
+the way that
+
+110
+00:05:35.850 --> 00:05:39.650
+you collected these data, whether it was
+just in a database,
+
+111
+00:05:39.650 --> 00:05:42.730
+you extracted it out, or whether you
+performed an experiment,
+
+112
+00:05:42.730 --> 00:05:44.840
+a randomized trial, or an A-B test or
+something like that.
+
+113
+00:05:46.380 --> 00:05:50.040
+So, a common format for this document is a
+Word or a text file.
+
+114
+00:05:50.040 --> 00:05:51.560
+It'd be like a Markdown file.
+
+115
+00:05:51.560 --> 00:05:57.120
+As you've seen, Markdown files are sort of
+a common used format in data science.
+
+116
+00:05:57.120 --> 00:05:59.510
+There should definitely be a section
+called Study Design, and
+
+117
+00:05:59.510 --> 00:06:02.010
+that has a thorough description of how you
+collected the data.
+
+118
+00:06:02.010 --> 00:06:06.520
+So this should say things like how you
+picked which observations to collect.
+
+119
+00:06:06.520 --> 00:06:09.790
+What did you extract out of the database,
+what did you exclude, and so forth.
+
+120
+00:06:11.500 --> 00:06:13.220
+There also should be a section called Code
+Book
+
+121
+00:06:13.220 --> 00:06:15.153
+that describes all of the variables and
+it's units.
+
+122
+00:06:16.690 --> 00:06:18.470
+Finally, you need the instruction list.
+
+123
+00:06:18.470 --> 00:06:20.730
+So, even if you collected all that
+information and you
+
+124
+00:06:20.730 --> 00:06:23.390
+made it available in the certain terms of
+the tidy data,
+
+125
+00:06:23.390 --> 00:06:25.410
+you should be able to go back to the raw
+data
+
+126
+00:06:25.410 --> 00:06:28.480
+and re process it and get the same tidy
+data set.
+
+127
+00:06:28.480 --> 00:06:29.880
+If that doesn't happen, then there's
+
+128
+00:06:29.880 --> 00:06:31.560
+something going wrong in your data
+processing
+
+129
+00:06:31.560 --> 00:06:35.420
+pipeline, and so, you want to be able to
+identify that and fix it.
+
+130
+00:06:35.420 --> 00:06:38.540
+So ideally, this is going to be a computer
+script that will do this for you.
+
+131
+00:06:38.540 --> 00:06:41.390
+And so, for the purposes of this class, of
+course R, but I guess,
+
+132
+00:06:41.390 --> 00:06:44.570
+you know, if you have to, you can do it in
+Python, as well.
+
+133
+00:06:44.570 --> 00:06:47.150
+The input for the script is the, raw data.
+
+134
+00:06:47.150 --> 00:06:51.220
+And so, the output is going to be the
+processed, tidy data.
+
+135
+00:06:51.220 --> 00:06:53.390
+And really good important component of
+this
+
+136
+00:06:53.390 --> 00:06:55.360
+script is that there are no parameters.
+
+137
+00:06:55.360 --> 00:06:58.230
+In other words, you fix everything that
+you've
+
+138
+00:06:58.230 --> 00:07:00.820
+done, after you've done all the
+processing, and you
+
+139
+00:07:00.820 --> 00:07:03.170
+have an exact recipe that doesn't have to
+
+140
+00:07:03.170 --> 00:07:07.420
+be twe, tweaked or modified by the end
+user.
+
+141
+00:07:07.420 --> 00:07:11.130
+And they will get the same tidy data set
+out if they put the same raw data set in.
+
+142
+00:07:12.530 --> 00:07:15.130
+So in some cases, it's not possible to
+script every step.
+
+143
+00:07:15.130 --> 00:07:19.750
+So, for example, not everything you can do
+to data, you can do in R.
+
+144
+00:07:19.750 --> 00:07:23.590
+I know it's hard to believe that I'm
+saying that, but it's true.
+
+145
+00:07:23.590 --> 00:07:26.560
+And so, what you might end up having to do
+is have, in
+
+146
+00:07:26.560 --> 00:07:29.140
+addition to the scri-, R scripts and the
+other scripts from the other
+
+147
+00:07:29.140 --> 00:07:34.860
+programming languages you might use, you
+might need a set of commands that
+
+148
+00:07:34.860 --> 00:07:37.780
+look like this where it's actually just
+written out in a text file.
+
+149
+00:07:37.780 --> 00:07:42.130
+It says take the raw file, and you're
+going to run some software, and you're
+
+150
+00:07:42.130 --> 00:07:45.140
+going to run version 3.1.2, and you're
+going to
+
+151
+00:07:45.140 --> 00:07:47.490
+run it with these spec, specified
+parameters.
+
+152
+00:07:47.490 --> 00:07:49.380
+You have to give all that information
+because
+
+153
+00:07:49.380 --> 00:07:51.420
+if you don't, if you just say run this
+
+154
+00:07:51.420 --> 00:07:53.430
+software on the raw data file, if the
+version
+
+155
+00:07:53.430 --> 00:07:55.470
+changes, you might get a totally different
+answer out.
+
+156
+00:07:55.470 --> 00:07:58.920
+And then you should say things like oh, I
+ran the software separately
+
+157
+00:07:58.920 --> 00:08:02.890
+for each sample so that people know
+exactly how you produced the result.
+
+158
+00:08:02.890 --> 00:08:05.400
+And so, if you can't write a computer
+script, the best case
+
+159
+00:08:05.400 --> 00:08:08.700
+that you can do is be as explicit as
+possible in this rescue.
+
+160
+00:08:08.700 --> 00:08:11.790
+Go way overboard in the amount of detail
+you give on how
+
+161
+00:08:11.790 --> 00:08:16.050
+the data got from being the raw data to
+the processed data.
+
+162
+00:08:17.170 --> 00:08:20.800
+So it's pretty important that you do this,
+and so this is actually I guess
+
+163
+00:08:20.800 --> 00:08:24.660
+a funny example for us, but not such a
+funny example for Reinhart and Rogoff.
+
+164
+00:08:24.660 --> 00:08:26.700
+These were two authors.
+
+165
+00:08:26.700 --> 00:08:31.890
+And they wrote a paper that talked about
+growth in the time of debt, and so it was
+
+166
+00:08:31.890 --> 00:08:34.570
+actually the paper that was used to
+justify austerity
+
+167
+00:08:34.570 --> 00:08:37.530
+in a large number of countries and in
+politically.
+
+168
+00:08:37.530 --> 00:08:39.720
+And so it turned out that this graduate
+student
+
+169
+00:08:39.720 --> 00:08:42.450
+got a hold of the Excel file that they
+used,
+
+170
+00:08:42.450 --> 00:08:44.260
+and he looked at the way that they had
+processed
+
+171
+00:08:44.260 --> 00:08:47.430
+the data, and he found a large number of
+errors.
+
+172
+00:08:47.430 --> 00:08:50.660
+And so, paying attention to how the data
+are collected, and
+
+173
+00:08:50.660 --> 00:08:54.940
+analyzed, and put together, actually
+caused this paper to be called
+
+174
+00:08:54.940 --> 00:08:59.280
+into serious question, which called, which
+called into serious question political
+
+175
+00:08:59.280 --> 00:09:03.440
+decisions by a large number of countries
+in the basically, the recession.
+
+176
+00:09:03.440 --> 00:09:07.680
+So the graduate student in question
+actually ended
+
+177
+00:09:07.680 --> 00:09:10.250
+up on the Colbert Report, and so he got
+
+178
+00:09:10.250 --> 00:09:12.080
+to actually joke around a little bit about
+how
+
+179
+00:09:12.080 --> 00:09:15.500
+this Excel error brought down all this
+political enterprise.
+
+180
+00:09:15.500 --> 00:09:17.380
+But it's an important safety lesson for
+all of
+
+181
+00:09:17.380 --> 00:09:20.140
+us that we should pay careful attention
+and keep the
+
+182
+00:09:20.140 --> 00:09:22.670
+script available that takes the raw data
+and turns it
+
+183
+00:09:22.670 --> 00:09:24.710
+into the processed data that we use for
+the analysis.

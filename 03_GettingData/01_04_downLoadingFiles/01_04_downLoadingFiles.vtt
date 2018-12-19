@@ -1,0 +1,592 @@
+WEBVTT
+
+1
+00:00:00.520 --> 00:00:04.058
+One way that you might get a data set is
+that somebody might actually write down
+
+2
+00:00:04.058 --> 00:00:06.189
+the numbers on a piece of paper and
+mail to you.
+
+3
+00:00:06.189 --> 00:00:08.012
+But more likely in this
+era of the internet,
+
+4
+00:00:08.012 --> 00:00:11.181
+you're probably going to be downloading
+a lot of your data from the Internet.
+
+5
+00:00:11.181 --> 00:00:14.200
+So this lecture is about how do
+you use r to download files?
+
+6
+00:00:14.200 --> 00:00:18.189
+And the reason why we want to use r to
+download files as opposed to pointing and
+
+7
+00:00:18.189 --> 00:00:22.623
+clicking, is because then the downloading
+process can be included in a processing
+
+8
+00:00:22.623 --> 00:00:26.865
+script, and so you get a more complete
+picture of how the data were collected and
+
+9
+00:00:26.865 --> 00:00:27.595
+generated.
+
+10
+00:00:27.595 --> 00:00:30.675
+So the first thing to keep in mind is that
+we need to know what directories we're
+
+11
+00:00:30.675 --> 00:00:31.198
+working in.
+
+12
+00:00:31.198 --> 00:00:36.583
+So if you took the Data Scientist Toolbox,
+you learned a little bit about CD and
+
+13
+00:00:36.583 --> 00:00:42.062
+the current working directories, and
+moving around within the directories.
+
+14
+00:00:42.062 --> 00:00:46.789
+So the two main commands when we're
+dealing with directories in r are going to
+
+15
+00:00:46.789 --> 00:00:48.660
+be getwd, and setwd.
+
+16
+00:00:48.660 --> 00:00:54.020
+And so, getwd does exactly what you'd
+expect, it gets the working directory.
+
+17
+00:00:54.020 --> 00:00:56.750
+It tells you what directory
+you're currently in.
+
+18
+00:00:56.750 --> 00:01:01.214
+And setwd actually sets a different
+working directory that you might want to
+
+19
+00:01:01.214 --> 00:01:02.140
+move to.
+
+20
+00:01:02.140 --> 00:01:05.410
+So one way that you can do that,
+is you can actually use it move relative.
+
+21
+00:01:05.410 --> 00:01:09.460
+So for
+example if you do setwd("../") like this,
+
+22
+00:01:09.460 --> 00:01:12.100
+what'll end up happening is
+you'll move it up one directory.
+
+23
+00:01:12.100 --> 00:01:15.650
+So remember when we were talking about
+directory structure, directory is
+
+24
+00:01:15.650 --> 00:01:21.310
+up if it's a super center, if it's above
+the directory that you're currently in.
+
+25
+00:01:21.310 --> 00:01:23.180
+You can also use absolute paths.
+
+26
+00:01:23.180 --> 00:01:27.038
+So for example, you can type
+setwd("/Users/jtleek/data/") and
+
+27
+00:01:27.038 --> 00:01:30.790
+what that'll do is that will move you
+into that directory that you specified
+
+28
+00:01:30.790 --> 00:01:31.580
+there exactly.
+
+29
+00:01:32.640 --> 00:01:35.750
+So an important distinction in Windows
+is that you have to use backslashes
+
+30
+00:01:35.750 --> 00:01:37.130
+rather than forward slashes.
+
+31
+00:01:37.130 --> 00:01:40.690
+So this is an example of the way that
+a path might look in a Windows machine
+
+32
+00:01:40.690 --> 00:01:45.800
+as opposed to a Mac or Linux machine.
+
+33
+00:01:45.800 --> 00:01:48.511
+So if you need more help with that go
+
+34
+00:01:48.511 --> 00:01:52.166
+check out the Data Science Toolbox
+lectures.
+
+35
+00:01:52.166 --> 00:01:56.429
+So one thing that we might want to do
+before we collect a bit of data is
+
+36
+00:01:56.429 --> 00:02:00.290
+to create a directory for
+that data to fall into.
+
+37
+00:02:00.290 --> 00:02:03.180
+So file.exists, is a function in r.
+
+38
+00:02:03.180 --> 00:02:06.590
+So if you are in a directory and
+you type file.exists,
+
+39
+00:02:06.590 --> 00:02:10.120
+directoryName like this,
+it will look within that directory and
+
+40
+00:02:10.120 --> 00:02:12.550
+see if there is a sub-directory
+called directoryName.
+
+41
+00:02:13.840 --> 00:02:18.130
+And so
+if it does exist it will return true, and
+
+42
+00:02:18.130 --> 00:02:21.208
+if it doesn't exist it will return false.
+
+43
+00:02:21.208 --> 00:02:23.390
+And so dir.create,
+
+44
+00:02:23.390 --> 00:02:28.830
+like this, will actually create
+a directory if it doesn't exist.
+
+45
+00:02:28.830 --> 00:02:32.340
+So here's a little bit of code that checks
+to see if there's a data directory.
+
+46
+00:02:32.340 --> 00:02:36.110
+So it says,
+if the data sub-directory exists,
+
+47
+00:02:37.760 --> 00:02:41.930
+then this will return a true, and
+
+48
+00:02:41.930 --> 00:02:47.690
+so what will end up happening is this
+will be false, and nothing will happen.
+
+49
+00:02:47.690 --> 00:02:52.085
+If the data directory doesn't exist,
+this will return false, and
+
+50
+00:02:52.085 --> 00:02:56.185
+this exclamation point will negate it and
+so that will be true.
+
+51
+00:02:56.185 --> 00:02:59.365
+And so then it will create
+a directory called data.
+
+52
+00:02:59.365 --> 00:03:03.550
+So you'll be seeing a command a lot
+like this throughout the lecture and
+
+53
+00:03:03.550 --> 00:03:07.821
+that's where you create a data
+directory that doesn't already exist.
+
+54
+00:03:07.821 --> 00:03:11.895
+So the main way that we get data from
+the internet if were talking about files,
+
+55
+00:03:11.895 --> 00:03:14.277
+is with the download.file function, and so
+
+56
+00:03:14.277 --> 00:03:17.925
+the download.file function downloads
+the file from the internet.
+
+57
+00:03:17.925 --> 00:03:21.611
+You can do this by hand of course,
+you can go to the website that you're
+
+58
+00:03:21.611 --> 00:03:24.003
+interested in and
+click and press download.
+
+59
+00:03:24.003 --> 00:03:28.254
+But if you do it by using download.cloud,
+it'll actually improve the reproducibility
+
+60
+00:03:28.254 --> 00:03:32.340
+if you've taken that class you'll
+understand what I mean by that.
+
+61
+00:03:32.340 --> 00:03:33.400
+And if not it'll just,
+
+62
+00:03:33.400 --> 00:03:36.770
+you can imagine intuitively it's easier
+to keep track of everything that
+
+63
+00:03:36.770 --> 00:03:39.910
+you've done if you've included the
+download process as part of your script.
+
+64
+00:03:41.090 --> 00:03:43.120
+The important parameters are the URL,
+
+65
+00:03:43.120 --> 00:03:46.590
+so that's the, the place that you're
+going to be getting the data from.
+
+66
+00:03:46.590 --> 00:03:50.930
+The destfile is the destination file
+where that data is going to go, and
+
+67
+00:03:50.930 --> 00:03:51.780
+then the method.
+
+68
+00:03:51.780 --> 00:03:54.520
+So we'll talk a little bit about why
+the method needs to be specified,
+
+69
+00:03:54.520 --> 00:03:57.300
+particularly when dealing with HTTPS.
+
+70
+00:03:58.480 --> 00:04:01.910
+So it's useful for
+downloading tab to limited, CSV files,
+
+71
+00:04:01.910 --> 00:04:04.950
+Excel files, a whole bunch of other
+different files from the internet.
+
+72
+00:04:04.950 --> 00:04:08.460
+So it's sort of agnostic to the file
+type that you might be downloading.
+
+73
+00:04:08.460 --> 00:04:11.840
+So as an example, we're going to be
+using the Baltimore fixed camera data.
+
+74
+00:04:11.840 --> 00:04:15.840
+So these are speed cameras that are set up
+around Baltimore, which have unfortunately
+
+75
+00:04:15.840 --> 00:04:19.310
+caught your instructor more than once
+speeding and being sent in a ticket.
+
+76
+00:04:19.310 --> 00:04:22.211
+And so you might want to be
+able to download these data and
+
+77
+00:04:22.211 --> 00:04:23.646
+figure out where they are.
+
+78
+00:04:23.646 --> 00:04:27.840
+So if you go over here under
+the Export button on this website,
+
+79
+00:04:27.840 --> 00:04:31.840
+you actually get a bunch of
+different kinds of files.
+
+80
+00:04:31.840 --> 00:04:35.860
+And so for example, you might go down to
+CSV which is one of these types of files
+
+81
+00:04:35.860 --> 00:04:39.560
+that you would see over here
+on the right hand side.
+
+82
+00:04:39.560 --> 00:04:42.220
+And if you right click you
+can copy the link address.
+
+83
+00:04:42.220 --> 00:04:46.260
+So now that's the link address just to the
+CSV file that we might want to download
+
+84
+00:04:46.260 --> 00:04:47.670
+with these camera positions.
+
+85
+00:04:49.110 --> 00:04:53.570
+And so, then what we do is we
+take that link that we copied and
+
+86
+00:04:53.570 --> 00:04:54.900
+we put it right here.
+
+87
+00:04:54.900 --> 00:04:58.340
+We save it into a variable
+called fileUrl just like this.
+
+88
+00:04:59.700 --> 00:05:05.001
+And then we pass a download file that file
+url that we collected off the website.
+
+89
+00:05:05.001 --> 00:05:09.066
+And we say, we'd like to put
+it in this data directory and
+
+90
+00:05:09.066 --> 00:05:11.702
+we'd like to call it cameras.csv.
+
+91
+00:05:11.702 --> 00:05:14.735
+We're using .csv because that's
+the extension that's used for
+
+92
+00:05:14.735 --> 00:05:16.720
+comma separated files.
+
+93
+00:05:16.720 --> 00:05:19.770
+And the method that we're
+going to use is curl.
+
+94
+00:05:19.770 --> 00:05:23.930
+This is necessary because
+this website is an https,
+
+95
+00:05:23.930 --> 00:05:27.340
+secure website, and so
+if you're doing this from a Mac,
+
+96
+00:05:27.340 --> 00:05:30.890
+you need to specify the method
+is curl in order for it to work.
+
+97
+00:05:30.890 --> 00:05:33.440
+If you're working from Windows,
+I don't think that you need to set
+
+98
+00:05:33.440 --> 00:05:37.390
+the method to be curl, the default
+method will work all right for you.
+
+99
+00:05:37.390 --> 00:05:40.620
+So then if you list the files
+in this data directory, so
+
+100
+00:05:40.620 --> 00:05:44.590
+this is sort of like the LS command that
+we saw in the command line interface.
+
+101
+00:05:44.590 --> 00:05:48.757
+You see that we now have one file in that
+directory, and it's the cameras.csv file.
+
+102
+00:05:49.870 --> 00:05:52.480
+An important component of downloading
+files from the internet is that those
+
+103
+00:05:52.480 --> 00:05:53.265
+files might change.
+
+104
+00:05:53.265 --> 00:05:55.960
+So for example, if they update
+the cameras, there might be a new
+
+105
+00:05:55.960 --> 00:05:59.205
+set of cameras and the data that
+we're analyzing might be different.
+
+106
+00:05:59.205 --> 00:06:01.655
+So you want to keep track of the date
+that you downloaded the data,
+
+107
+00:06:01.655 --> 00:06:03.595
+and you can do that
+with the date function.
+
+108
+00:06:03.595 --> 00:06:08.108
+So you just assign to
+dateDownloaded the command date and
+
+109
+00:06:08.108 --> 00:06:12.910
+that will give you the date that
+those data were downloaded.
+
+110
+00:06:12.910 --> 00:06:17.063
+So with those data having been downloaded,
+and knowing the date, you can go back and
+
+111
+00:06:17.063 --> 00:06:20.826
+see if you can find the right version of
+the file if you have trouble later on.
+
+112
+00:06:22.463 --> 00:06:26.680
+So, if the url starts with http,
+you should be okay.
+
+113
+00:06:26.680 --> 00:06:31.920
+Even if the url starts with https
+on Windows you should be okay.
+
+114
+00:06:31.920 --> 00:06:36.680
+On a Mac you need to set the method
+= "curl" if you have https.
+
+115
+00:06:36.680 --> 00:06:39.720
+One thing to keep in mind is
+that this actually going out and
+
+116
+00:06:39.720 --> 00:06:42.740
+downloading the file from the Internet,
+so depending on the size of the file and
+
+117
+00:06:42.740 --> 00:06:45.930
+your internet connection,
+this could end up taking a while.
+
+118
+00:06:45.930 --> 00:06:50.750
+So sometimes what you may want to do
+is have the instruction list, but
+
+119
+00:06:50.750 --> 00:06:54.850
+when you actually run new versions
+of the processing software,
+
+120
+00:06:54.850 --> 00:07:00.030
+you don't rerun the file download every
+single time if it's a really big file.
+
+121
+00:07:00.030 --> 00:07:03.080
+And remember to record when the file was
+downloaded so that you can go back and
+
+122
+00:07:03.080 --> 00:07:06.810
+check the version of the file later
+when you're trying to figure things out.
+
+123
+00:07:06.810 --> 00:07:08.670
+So that's how you download
+a file from the internet in r.
